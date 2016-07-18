@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3C5D296D1D3D60570048DEA1 /* SDL2_image.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C5D29691D3D60570048DEA1 /* SDL2_image.framework */; };
+		3C5D296E1D3D60570048DEA1 /* SDL2_mixer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C5D296A1D3D60570048DEA1 /* SDL2_mixer.framework */; };
+		3C5D296F1D3D60570048DEA1 /* SDL2_ttf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C5D296B1D3D60570048DEA1 /* SDL2_ttf.framework */; };
+		3C5D29701D3D60570048DEA1 /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C5D296C1D3D60570048DEA1 /* SDL2.framework */; };
+		3C5D29741D3D7E300048DEA1 /* Texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3C5D29721D3D7E300048DEA1 /* Texture.cpp */; };
 		3CFED6491D3C2CFC0015439C /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3CFED6481D3C2CFC0015439C /* main.cpp */; };
 		3CFED6711D3C31550015439C /* Game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3CFED66F1D3C31550015439C /* Game.cpp */; };
 /* End PBXBuildFile section */
@@ -24,6 +29,14 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		3C5D29691D3D60570048DEA1 /* SDL2_image.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_image.framework; path = ../../Library/Frameworks/SDL2_image.framework; sourceTree = "<group>"; };
+		3C5D296A1D3D60570048DEA1 /* SDL2_mixer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_mixer.framework; path = ../../Library/Frameworks/SDL2_mixer.framework; sourceTree = "<group>"; };
+		3C5D296B1D3D60570048DEA1 /* SDL2_ttf.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_ttf.framework; path = ../../Library/Frameworks/SDL2_ttf.framework; sourceTree = "<group>"; };
+		3C5D296C1D3D60570048DEA1 /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = ../../Library/Frameworks/SDL2.framework; sourceTree = "<group>"; };
+		3C5D29721D3D7E300048DEA1 /* Texture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Texture.cpp; sourceTree = "<group>"; };
+		3C5D29731D3D7E300048DEA1 /* Texture.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Texture.hpp; sourceTree = "<group>"; };
+		3C5D29751D3D7E920048DEA1 /* Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
+		3C5D29761D3D7EB00048DEA1 /* Config.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Config.h; sourceTree = "<group>"; };
 		3CFED6451D3C2CFC0015439C /* ChineseChess */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ChineseChess; sourceTree = BUILT_PRODUCTS_DIR; };
 		3CFED6481D3C2CFC0015439C /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		3CFED6501D3C309F0015439C /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
@@ -66,15 +79,31 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3C5D296D1D3D60570048DEA1 /* SDL2_image.framework in Frameworks */,
+				3C5D296E1D3D60570048DEA1 /* SDL2_mixer.framework in Frameworks */,
+				3C5D296F1D3D60570048DEA1 /* SDL2_ttf.framework in Frameworks */,
+				3C5D29701D3D60570048DEA1 /* SDL2.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3C5D29711D3D61EC0048DEA1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3C5D29691D3D60570048DEA1 /* SDL2_image.framework */,
+				3C5D296A1D3D60570048DEA1 /* SDL2_mixer.framework */,
+				3C5D296B1D3D60570048DEA1 /* SDL2_ttf.framework */,
+				3C5D296C1D3D60570048DEA1 /* SDL2.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		3CFED63C1D3C2CFC0015439C = {
 			isa = PBXGroup;
 			children = (
+				3C5D29711D3D61EC0048DEA1 /* Frameworks */,
 				3CFED64F1D3C309F0015439C /* Resources */,
 				3CFED6471D3C2CFC0015439C /* ChineseChess */,
 				3CFED6461D3C2CFC0015439C /* Products */,
@@ -95,6 +124,10 @@
 				3CFED6481D3C2CFC0015439C /* main.cpp */,
 				3CFED66F1D3C31550015439C /* Game.cpp */,
 				3CFED6701D3C31550015439C /* Game.hpp */,
+				3C5D29721D3D7E300048DEA1 /* Texture.cpp */,
+				3C5D29731D3D7E300048DEA1 /* Texture.hpp */,
+				3C5D29751D3D7E920048DEA1 /* Header.h */,
+				3C5D29761D3D7EB00048DEA1 /* Config.h */,
 			);
 			path = ChineseChess;
 			sourceTree = "<group>";
@@ -193,6 +226,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3C5D29741D3D7E300048DEA1 /* Texture.cpp in Sources */,
 				3CFED6491D3C2CFC0015439C /* main.cpp in Sources */,
 				3CFED6711D3C31550015439C /* Game.cpp in Sources */,
 			);
@@ -285,6 +319,10 @@
 		3CFED64D1D3C2CFC0015439C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(USER_LIBRARY_DIR)/Frameworks",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -292,6 +330,10 @@
 		3CFED64E1D3C2CFC0015439C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(USER_LIBRARY_DIR)/Frameworks",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
