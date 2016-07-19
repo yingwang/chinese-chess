@@ -29,3 +29,6 @@
 *.app
 
 .DS_Store
+*.xcuserstate
+project.xcworkspace/
+xcuserdata/
