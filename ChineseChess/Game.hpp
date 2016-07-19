@@ -17,6 +17,7 @@
 #include "PieceTexture.hpp"
 #include "Piece.hpp"
 #include "Level.hpp"
+#include "Move.hpp"
 
 class Game
 {
@@ -29,6 +30,7 @@ private:
     SDL_Event* event;
 
     Level* level;
+    Move currentMove;
     
     Texture* backgroundTexture;
     std::vector<PieceTexture*> pieceTexture;
@@ -40,6 +42,9 @@ private:
     void Close();
     void Input();
     void LoadLevel();
+    void OnMouseButtonDown(int xPos, int yPos);
+    void OnMouseButtonUp(int xPos, int yPos);
+    void PerformMove();
 
 public:
     Game();

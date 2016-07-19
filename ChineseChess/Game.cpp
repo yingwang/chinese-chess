@@ -131,6 +131,41 @@ void Game::Close()
     SDL_Quit();
 }
 
+void Game::OnMouseButtonDown(int xPos, int yPos)
+{
+    if (currentMove.GetFromRow() < 0)
+    {
+        currentMove.SetFromLocation(xPos, yPos);
+    }
+}
+
+void Game::OnMouseButtonUp(int xPos, int yPos)
+{
+    currentMove.SetToLocation(xPos, yPos);
+    
+    if (currentMove.GetValidMove())
+    {
+        currentMove.SetFromPiece(pieces[currentMove.GetFromRow()][currentMove.GetFromCol()]);
+        currentMove.SetToPiece(pieces[currentMove.GetToRow()][currentMove.GetToCol()]);
+        if (currentMove.GetFromPiece()->GetCharacter() != Piece::PieceCharacter::NONE)
+        {
+            PerformMove();
+        }
+        currentMove.ResetMove();
+        currentMove.ResetValidMove();
+    }
+}
+
+void Game::PerformMove()
+{
+    pieces[currentMove.GetFromRow()][currentMove.GetFromCol()] = new Piece(Piece::PieceCharacter::NONE);
+    pieces[currentMove.GetFromRow()][currentMove.GetFromCol()]->SetRow(currentMove.GetFromRow());
+    pieces[currentMove.GetFromRow()][currentMove.GetFromCol()]->SetCol(currentMove.GetFromCol());
+    pieces[currentMove.GetToRow()][currentMove.GetToCol()]= currentMove.GetFromPiece();
+    pieces[currentMove.GetToRow()][currentMove.GetToCol()]->SetRow(currentMove.GetToRow());
+    pieces[currentMove.GetToRow()][currentMove.GetToCol()]->SetCol(currentMove.GetToCol());
+}
+
 void Game::Input()
 {
     int xPos, yPos;
@@ -141,9 +176,11 @@ void Game::Input()
             break;
         case SDL_MOUSEBUTTONDOWN:
             SDL_GetMouseState(&xPos, &yPos);
+            OnMouseButtonDown(xPos, yPos);
             break;
         case SDL_MOUSEBUTTONUP:
             SDL_GetMouseState(&xPos, &yPos);
+            OnMouseButtonUp(xPos, yPos);
             break;
         default:
             break;

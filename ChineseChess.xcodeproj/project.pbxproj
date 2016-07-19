@@ -10,6 +10,7 @@
 		3C082B9B1D3E984C00579000 /* Piece.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3C082B991D3E984B00579000 /* Piece.cpp */; };
 		3C082B9E1D3E990D00579000 /* PieceTexture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3C082B9C1D3E990D00579000 /* PieceTexture.cpp */; };
 		3C082BA11D3E9AED00579000 /* Level.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3C082B9F1D3E9AED00579000 /* Level.cpp */; };
+		3C082BA41D3EC2EA00579000 /* Move.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3C082BA21D3EC2EA00579000 /* Move.cpp */; };
 		3C5D296D1D3D60570048DEA1 /* SDL2_image.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C5D29691D3D60570048DEA1 /* SDL2_image.framework */; };
 		3C5D296E1D3D60570048DEA1 /* SDL2_mixer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C5D296A1D3D60570048DEA1 /* SDL2_mixer.framework */; };
 		3C5D296F1D3D60570048DEA1 /* SDL2_ttf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C5D296B1D3D60570048DEA1 /* SDL2_ttf.framework */; };
@@ -38,6 +39,8 @@
 		3C082B9D1D3E990D00579000 /* PieceTexture.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PieceTexture.hpp; sourceTree = "<group>"; };
 		3C082B9F1D3E9AED00579000 /* Level.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Level.cpp; sourceTree = "<group>"; };
 		3C082BA01D3E9AED00579000 /* Level.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Level.hpp; sourceTree = "<group>"; };
+		3C082BA21D3EC2EA00579000 /* Move.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Move.cpp; sourceTree = "<group>"; };
+		3C082BA31D3EC2EA00579000 /* Move.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Move.hpp; sourceTree = "<group>"; };
 		3C5D29691D3D60570048DEA1 /* SDL2_image.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_image.framework; path = ../../Library/Frameworks/SDL2_image.framework; sourceTree = "<group>"; };
 		3C5D296A1D3D60570048DEA1 /* SDL2_mixer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_mixer.framework; path = ../../Library/Frameworks/SDL2_mixer.framework; sourceTree = "<group>"; };
 		3C5D296B1D3D60570048DEA1 /* SDL2_ttf.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_ttf.framework; path = ../../Library/Frameworks/SDL2_ttf.framework; sourceTree = "<group>"; };
@@ -143,6 +146,8 @@
 				3C082B9D1D3E990D00579000 /* PieceTexture.hpp */,
 				3C082B9F1D3E9AED00579000 /* Level.cpp */,
 				3C082BA01D3E9AED00579000 /* Level.hpp */,
+				3C082BA21D3EC2EA00579000 /* Move.cpp */,
+				3C082BA31D3EC2EA00579000 /* Move.hpp */,
 			);
 			path = ChineseChess;
 			sourceTree = "<group>";
@@ -242,6 +247,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3C082BA11D3E9AED00579000 /* Level.cpp in Sources */,
+				3C082BA41D3EC2EA00579000 /* Move.cpp in Sources */,
 				3C082B9E1D3E990D00579000 /* PieceTexture.cpp in Sources */,
 				3C082B9B1D3E984C00579000 /* Piece.cpp in Sources */,
 				3C5D29741D3D7E300048DEA1 /* Texture.cpp in Sources */,
