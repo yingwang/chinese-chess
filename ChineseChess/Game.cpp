@@ -39,24 +39,91 @@ void Game::Init()
 void Game::LoadTextures()
 {
     backgroundTexture = new Texture(renderer, "Resources","backGround.png");
+    pieceTexture.push_back(new PieceTexture(renderer, "Resources", "bjiang.png"));
+    pieceTexture.push_back(new PieceTexture(renderer, "Resources", "rshuai.png"));
+    pieceTexture.push_back(new PieceTexture(renderer, "Resources", "bshi.png"));
+    pieceTexture.push_back(new PieceTexture(renderer, "Resources", "rshi.png"));
+    pieceTexture.push_back(new PieceTexture(renderer, "Resources", "bxiang.png"));
+    pieceTexture.push_back(new PieceTexture(renderer, "Resources", "rxiang.png"));
+    pieceTexture.push_back(new PieceTexture(renderer, "Resources", "bma.png"));
+    pieceTexture.push_back(new PieceTexture(renderer, "Resources", "rma.png"));
+    pieceTexture.push_back(new PieceTexture(renderer, "Resources", "bche.png"));
+    pieceTexture.push_back(new PieceTexture(renderer, "Resources", "rche.png"));
+    pieceTexture.push_back(new PieceTexture(renderer, "Resources", "bpao.png"));
+    pieceTexture.push_back(new PieceTexture(renderer, "Resources", "rpao.png"));
+    pieceTexture.push_back(new PieceTexture(renderer, "Resources", "bzu.png"));
+    pieceTexture.push_back(new PieceTexture(renderer, "Resources", "rbing.png"));
 }
 
 void Game::RenderTextures()
 {
     backgroundTexture->Draw();
+    
+    int pieceWidth = PieceTexture::GetTotalWidth();
+    int pieceHeight = PieceTexture::GetTotalHeight();
+    for (int row = 0; row < numOfRow; row++)
+    {
+        for (int col = 0; col < numOfCol; col++ )
+        {
+            if ((pieces[row][col] == NULL) || (pieces[row][col]->GetCharacter() == Piece::NONE))
+            {
+                continue;
+            }
+            pieceTexture[pieces[row][col]->GetCharacter()]->Draw(Config::X_OFFSET + pieceWidth * col, Config::Y_OFFSET + pieceHeight * row);
+        }
+    }
+}
+
+void Game::LoadLevel()
+{
+    level = new Level();
+
+    numOfRow = level->GetNumOfRow();
+    numOfCol = level->GetNumOfCol();
+    
+    for (int row = 0; row < numOfRow; row++)
+    {
+        std::vector<Piece*> v;
+        for (int col = 0; col < numOfCol; col++ )
+        {
+            Piece* p = new Piece(static_cast<int>(level->GetMap()[row * numOfCol + col]));
+            p->SetRow(row);
+            p->SetCol(col);
+            v.push_back(p);
+        }
+        pieces.push_back(v);
+    }
 }
 
 void Game::Close()
 {
-    delete  backgroundTexture;
-    backgroundTexture = NULL;
     
+    for (int row = 0; row < numOfRow; row++)
+    {
+        for (int col = 0; col < numOfCol; col++)
+        {
+            delete pieces[row][col];
+            pieces[row][col] = nullptr;
+        }
+    }
+    
+    for (int i = 0; i < pieceTexture.size(); i++)
+    {
+        delete pieceTexture[i];
+        pieceTexture[i] = nullptr;
+    }
+    
+    delete  backgroundTexture;
+    backgroundTexture = nullptr;
+    
+    delete level;
     delete event;
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
-    event = NULL;
-    window = NULL;
-    renderer = NULL;
+    level = nullptr;
+    event = nullptr;
+    window = nullptr;
+    renderer = nullptr;
     
     Mix_Quit();
     TTF_Quit();
@@ -87,6 +154,7 @@ void Game::MainLoop()
 {
     Init();
     event = new SDL_Event();
+    LoadLevel();
     LoadTextures();
     while(!quitGame)
     {
