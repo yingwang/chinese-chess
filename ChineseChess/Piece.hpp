@@ -9,35 +9,23 @@
 #ifndef Piece_hpp
 #define Piece_hpp
 
+#include <iostream>
+#include <vector>
+
+typedef std::pair<int, int> Position;
+
 class Piece
 {
-private:
+protected:
     int character;
     int color;
     int row;
     int col;
+    std::vector<Position> possibleMoves;
     
 public:
-    enum PieceCharacter
-    {
-        GENERAL_BLUE,
-        GENERAL_RED,
-        ADVISOR_BLUE,
-        ADVISOR_RED,
-        ELEPHANT_BLUE,
-        ELEPHANT_RED,
-        HORSE_BLUE,
-        HORSE_RED,
-        CHARIOT_BLUE,
-        CHARIOT_RED,
-        CANNON_BLUE,
-        CANNON_RED,
-        SOLDIER_BLUE,
-        SOLDIER_RED,
-        NONE,
-    };
-    Piece(Piece::PieceCharacter c);
-    Piece(int c);
+    virtual std::vector<Position> PossibleMoves() = 0;
+    virtual ~Piece() {};
     int GetCharacter();
     int GetColor();
     int GetRow();

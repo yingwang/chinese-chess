@@ -34,7 +34,7 @@ private:
     
     Texture* backgroundTexture;
     std::vector<PieceTexture*> pieceTexture;
-    std::vector< std::vector<Piece*> > pieces;
+    std::vector< vector<Piece*> > pieces;
     
     void Init();
     void LoadTextures();

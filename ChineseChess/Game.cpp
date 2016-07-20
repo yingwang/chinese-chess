@@ -7,6 +7,7 @@
 //
 
 #include "Game.hpp"
+#include "PieceFactory.hpp"
 
 bool Game::quitGame = false;
 
@@ -65,7 +66,7 @@ void Game::RenderTextures()
     {
         for (int col = 0; col < numOfCol; col++ )
         {
-            if ((pieces[row][col] == NULL) || (pieces[row][col]->GetCharacter() == Piece::NONE))
+            if ((pieces[row][col] == NULL) || (pieces[row][col]->GetCharacter() == PieceFactory::NONE))
             {
                 continue;
             }
@@ -86,7 +87,8 @@ void Game::LoadLevel()
         std::vector<Piece*> v;
         for (int col = 0; col < numOfCol; col++ )
         {
-            Piece* p = new Piece(static_cast<int>(level->GetMap()[row * numOfCol + col]));
+            int c = static_cast<int>(level->GetMap()[row * numOfCol + col]);
+            Piece* p = PieceFactory::createPiece(static_cast<PieceFactory::PieceCharacter>(c));
             p->SetRow(row);
             p->SetCol(col);
             v.push_back(p);
@@ -147,7 +149,7 @@ void Game::OnMouseButtonUp(int xPos, int yPos)
     {
         currentMove.SetFromPiece(pieces[currentMove.GetFromRow()][currentMove.GetFromCol()]);
         currentMove.SetToPiece(pieces[currentMove.GetToRow()][currentMove.GetToCol()]);
-        if (currentMove.GetFromPiece()->GetCharacter() != Piece::PieceCharacter::NONE)
+        if (currentMove.GetFromPiece()->GetCharacter() != PieceFactory::PieceCharacter::NONE)
         {
             PerformMove();
         }
@@ -158,7 +160,7 @@ void Game::OnMouseButtonUp(int xPos, int yPos)
 
 void Game::PerformMove()
 {
-    pieces[currentMove.GetFromRow()][currentMove.GetFromCol()] = new Piece(Piece::PieceCharacter::NONE);
+    pieces[currentMove.GetFromRow()][currentMove.GetFromCol()] = PieceFactory::createPiece(PieceFactory::PieceCharacter::NONE);
     pieces[currentMove.GetFromRow()][currentMove.GetFromCol()]->SetRow(currentMove.GetFromRow());
     pieces[currentMove.GetFromRow()][currentMove.GetFromCol()]->SetCol(currentMove.GetFromCol());
     pieces[currentMove.GetToRow()][currentMove.GetToCol()]= currentMove.GetFromPiece();

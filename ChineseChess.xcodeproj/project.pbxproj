@@ -11,6 +11,15 @@
 		3C082B9E1D3E990D00579000 /* PieceTexture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3C082B9C1D3E990D00579000 /* PieceTexture.cpp */; };
 		3C082BA11D3E9AED00579000 /* Level.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3C082B9F1D3E9AED00579000 /* Level.cpp */; };
 		3C082BA41D3EC2EA00579000 /* Move.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3C082BA21D3EC2EA00579000 /* Move.cpp */; };
+		3C539B701D4016F800BCEE59 /* General.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3C539B6E1D4016F800BCEE59 /* General.cpp */; };
+		3C539B731D40170A00BCEE59 /* Advisor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3C539B711D40170A00BCEE59 /* Advisor.cpp */; };
+		3C539B761D40172200BCEE59 /* Elephant.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3C539B741D40172200BCEE59 /* Elephant.cpp */; };
+		3C539B791D40172E00BCEE59 /* Horse.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3C539B771D40172E00BCEE59 /* Horse.cpp */; };
+		3C539B7C1D40173F00BCEE59 /* Chariot.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3C539B7A1D40173F00BCEE59 /* Chariot.cpp */; };
+		3C539B7F1D40174D00BCEE59 /* Cannon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3C539B7D1D40174D00BCEE59 /* Cannon.cpp */; };
+		3C539B821D40177F00BCEE59 /* Soldier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3C539B801D40177F00BCEE59 /* Soldier.cpp */; };
+		3C539B851D40257500BCEE59 /* PieceFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3C539B831D40257500BCEE59 /* PieceFactory.cpp */; };
+		3C539B881D402D7B00BCEE59 /* None.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3C539B861D402D7B00BCEE59 /* None.cpp */; };
 		3C5D296D1D3D60570048DEA1 /* SDL2_image.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C5D29691D3D60570048DEA1 /* SDL2_image.framework */; };
 		3C5D296E1D3D60570048DEA1 /* SDL2_mixer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C5D296A1D3D60570048DEA1 /* SDL2_mixer.framework */; };
 		3C5D296F1D3D60570048DEA1 /* SDL2_ttf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C5D296B1D3D60570048DEA1 /* SDL2_ttf.framework */; };
@@ -41,6 +50,24 @@
 		3C082BA01D3E9AED00579000 /* Level.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Level.hpp; sourceTree = "<group>"; };
 		3C082BA21D3EC2EA00579000 /* Move.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Move.cpp; sourceTree = "<group>"; };
 		3C082BA31D3EC2EA00579000 /* Move.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Move.hpp; sourceTree = "<group>"; };
+		3C539B6E1D4016F800BCEE59 /* General.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = General.cpp; sourceTree = "<group>"; };
+		3C539B6F1D4016F800BCEE59 /* General.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = General.hpp; sourceTree = "<group>"; };
+		3C539B711D40170A00BCEE59 /* Advisor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Advisor.cpp; sourceTree = "<group>"; };
+		3C539B721D40170A00BCEE59 /* Advisor.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Advisor.hpp; sourceTree = "<group>"; };
+		3C539B741D40172200BCEE59 /* Elephant.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Elephant.cpp; sourceTree = "<group>"; };
+		3C539B751D40172200BCEE59 /* Elephant.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Elephant.hpp; sourceTree = "<group>"; };
+		3C539B771D40172E00BCEE59 /* Horse.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Horse.cpp; sourceTree = "<group>"; };
+		3C539B781D40172E00BCEE59 /* Horse.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Horse.hpp; sourceTree = "<group>"; };
+		3C539B7A1D40173F00BCEE59 /* Chariot.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Chariot.cpp; sourceTree = "<group>"; };
+		3C539B7B1D40173F00BCEE59 /* Chariot.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Chariot.hpp; sourceTree = "<group>"; };
+		3C539B7D1D40174D00BCEE59 /* Cannon.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Cannon.cpp; sourceTree = "<group>"; };
+		3C539B7E1D40174D00BCEE59 /* Cannon.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Cannon.hpp; sourceTree = "<group>"; };
+		3C539B801D40177F00BCEE59 /* Soldier.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Soldier.cpp; sourceTree = "<group>"; };
+		3C539B811D40177F00BCEE59 /* Soldier.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Soldier.hpp; sourceTree = "<group>"; };
+		3C539B831D40257500BCEE59 /* PieceFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PieceFactory.cpp; sourceTree = "<group>"; };
+		3C539B841D40257500BCEE59 /* PieceFactory.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PieceFactory.hpp; sourceTree = "<group>"; };
+		3C539B861D402D7B00BCEE59 /* None.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = None.cpp; sourceTree = "<group>"; };
+		3C539B871D402D7B00BCEE59 /* None.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = None.hpp; sourceTree = "<group>"; };
 		3C5D29691D3D60570048DEA1 /* SDL2_image.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_image.framework; path = ../../Library/Frameworks/SDL2_image.framework; sourceTree = "<group>"; };
 		3C5D296A1D3D60570048DEA1 /* SDL2_mixer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_mixer.framework; path = ../../Library/Frameworks/SDL2_mixer.framework; sourceTree = "<group>"; };
 		3C5D296B1D3D60570048DEA1 /* SDL2_ttf.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_ttf.framework; path = ../../Library/Frameworks/SDL2_ttf.framework; sourceTree = "<group>"; };
@@ -101,6 +128,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3C539B6D1D4016E300BCEE59 /* Piece */ = {
+			isa = PBXGroup;
+			children = (
+				3C082B991D3E984B00579000 /* Piece.cpp */,
+				3C082B9A1D3E984C00579000 /* Piece.hpp */,
+				3C539B6E1D4016F800BCEE59 /* General.cpp */,
+				3C539B6F1D4016F800BCEE59 /* General.hpp */,
+				3C539B711D40170A00BCEE59 /* Advisor.cpp */,
+				3C539B721D40170A00BCEE59 /* Advisor.hpp */,
+				3C539B741D40172200BCEE59 /* Elephant.cpp */,
+				3C539B751D40172200BCEE59 /* Elephant.hpp */,
+				3C539B771D40172E00BCEE59 /* Horse.cpp */,
+				3C539B781D40172E00BCEE59 /* Horse.hpp */,
+				3C539B7A1D40173F00BCEE59 /* Chariot.cpp */,
+				3C539B7B1D40173F00BCEE59 /* Chariot.hpp */,
+				3C539B7D1D40174D00BCEE59 /* Cannon.cpp */,
+				3C539B7E1D40174D00BCEE59 /* Cannon.hpp */,
+				3C539B801D40177F00BCEE59 /* Soldier.cpp */,
+				3C539B811D40177F00BCEE59 /* Soldier.hpp */,
+				3C539B831D40257500BCEE59 /* PieceFactory.cpp */,
+				3C539B841D40257500BCEE59 /* PieceFactory.hpp */,
+				3C539B861D402D7B00BCEE59 /* None.cpp */,
+				3C539B871D402D7B00BCEE59 /* None.hpp */,
+			);
+			name = Piece;
+			sourceTree = "<group>";
+		};
 		3C5D29711D3D61EC0048DEA1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -133,6 +187,7 @@
 		3CFED6471D3C2CFC0015439C /* ChineseChess */ = {
 			isa = PBXGroup;
 			children = (
+				3C539B6D1D4016E300BCEE59 /* Piece */,
 				3CFED6481D3C2CFC0015439C /* main.cpp */,
 				3CFED66F1D3C31550015439C /* Game.cpp */,
 				3CFED6701D3C31550015439C /* Game.hpp */,
@@ -140,8 +195,6 @@
 				3C5D29731D3D7E300048DEA1 /* Texture.hpp */,
 				3C5D29751D3D7E920048DEA1 /* Header.h */,
 				3C5D29761D3D7EB00048DEA1 /* Config.h */,
-				3C082B991D3E984B00579000 /* Piece.cpp */,
-				3C082B9A1D3E984C00579000 /* Piece.hpp */,
 				3C082B9C1D3E990D00579000 /* PieceTexture.cpp */,
 				3C082B9D1D3E990D00579000 /* PieceTexture.hpp */,
 				3C082B9F1D3E9AED00579000 /* Level.cpp */,
@@ -247,9 +300,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				3C082BA11D3E9AED00579000 /* Level.cpp in Sources */,
+				3C539B731D40170A00BCEE59 /* Advisor.cpp in Sources */,
+				3C539B7C1D40173F00BCEE59 /* Chariot.cpp in Sources */,
+				3C539B851D40257500BCEE59 /* PieceFactory.cpp in Sources */,
+				3C539B791D40172E00BCEE59 /* Horse.cpp in Sources */,
+				3C539B761D40172200BCEE59 /* Elephant.cpp in Sources */,
 				3C082BA41D3EC2EA00579000 /* Move.cpp in Sources */,
+				3C539B821D40177F00BCEE59 /* Soldier.cpp in Sources */,
+				3C539B701D4016F800BCEE59 /* General.cpp in Sources */,
+				3C539B881D402D7B00BCEE59 /* None.cpp in Sources */,
 				3C082B9E1D3E990D00579000 /* PieceTexture.cpp in Sources */,
 				3C082B9B1D3E984C00579000 /* Piece.cpp in Sources */,
+				3C539B7F1D40174D00BCEE59 /* Cannon.cpp in Sources */,
 				3C5D29741D3D7E300048DEA1 /* Texture.cpp in Sources */,
 				3CFED6491D3C2CFC0015439C /* main.cpp in Sources */,
 				3CFED6711D3C31550015439C /* Game.cpp in Sources */,
@@ -343,6 +405,7 @@
 		3CFED64D1D3C2CFC0015439C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(USER_LIBRARY_DIR)/Frameworks",
@@ -354,6 +417,7 @@
 		3CFED64E1D3C2CFC0015439C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(USER_LIBRARY_DIR)/Frameworks",

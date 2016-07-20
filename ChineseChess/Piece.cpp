@@ -8,16 +8,6 @@
 
 #include "Piece.hpp"
 
-Piece::Piece(Piece::PieceCharacter c)
-{
-    character = c;
-}
-
-Piece::Piece(int c)
-{
-    character = c;
-}
-
 int Piece::GetCharacter()
 {
     return character;
