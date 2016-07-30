@@ -47,10 +47,17 @@ private:
     void PerformMove();
 
 public:
+    enum GameState {
+        RED_TURN,
+        BLUE_TURN,
+        END,
+    };
+    
     Game();
     ~Game();
     static bool quitGame;
     void MainLoop();
+    GameState currentGameState;
 };
 
 #endif /* Game_hpp */

@@ -14,6 +14,7 @@ bool Game::quitGame = false;
 Game::Game()
 {
     Game::quitGame = false;
+    currentGameState = GameState::RED_TURN;
 }
 
 Game::~Game()
@@ -142,6 +143,13 @@ void Game::OnMouseButtonDown(int xPos, int yPos)
         {
             currentMove.ResetMove();
             currentMove.ResetValidMove();
+            return;
+        }
+        if (((pieces[currentMove.GetFromRow()][currentMove.GetFromCol()]->GetColor() == 0) && currentGameState != GameState::BLUE_TURN)
+            || ((pieces[currentMove.GetFromRow()][currentMove.GetFromCol()]->GetColor() == 1) && currentGameState != GameState::RED_TURN))
+        {
+            currentMove.ResetMove();
+            currentMove.ResetValidMove();
         }
     }
 }
@@ -159,6 +167,28 @@ void Game::OnMouseButtonUp(int xPos, int yPos)
             if ((currentMove.GetFromPiece()->PossibleMoves(pieces)[currentMove.GetToRow() * 10 + currentMove.GetToCol()] == true) && (currentMove.GetFromPiece()->GetColor() != currentMove.GetToPiece()->GetColor()))
             {
                 PerformMove();
+                if (currentGameState == GameState::RED_TURN)
+                {
+                    if (currentMove.GetToPiece()->GetCharacter() == PieceFactory::GENERAL_BLUE)
+                    {
+                        currentGameState = GameState::END;
+                    }
+                    else
+                    {
+                        currentGameState = GameState::BLUE_TURN;
+                    }
+                }
+                else
+                {
+                    if (currentMove.GetToPiece()->GetCharacter() == PieceFactory::GENERAL_RED)
+                    {
+                        currentGameState = GameState::END;
+                    }
+                    else
+                    {
+                        currentGameState = GameState::RED_TURN;
+                    }
+                }
             }
         }
         currentMove.ResetMove();
@@ -185,12 +215,18 @@ void Game::Input()
             quitGame = true;
             break;
         case SDL_MOUSEBUTTONDOWN:
-            SDL_GetMouseState(&xPos, &yPos);
-            OnMouseButtonDown(xPos, yPos);
+            if (currentGameState != GameState::END)
+            {
+                SDL_GetMouseState(&xPos, &yPos);
+                OnMouseButtonDown(xPos, yPos);
+            }
             break;
         case SDL_MOUSEBUTTONUP:
-            SDL_GetMouseState(&xPos, &yPos);
-            OnMouseButtonUp(xPos, yPos);
+            if (currentGameState != GameState::END)
+            {
+                SDL_GetMouseState(&xPos, &yPos);
+                OnMouseButtonUp(xPos, yPos);
+            }
             break;
         default:
             break;
