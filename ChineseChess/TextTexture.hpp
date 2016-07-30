@@ -20,14 +20,16 @@ private:
     int width;
     int height;
     TTF_Font* font;
-    SDL_Color textColor = {255, 255, 255, 255};
+    SDL_Color textColorBlue = {0, 0, 128, 255};
+    SDL_Color textColorRed = {128, 0, 0, 255};
+    SDL_Color textColorBlack = {0, 0, 0, 255};
     int xOffset;
     int yOffset;
 public:
     TextTexture(SDL_Renderer* r, const string& path, const string& name, const string& textToRender);
     ~TextTexture();
     void Draw(int x, int y);
-    void Update(const string& textToRender);
+    void Update(const string& textToRender, int stateColor);
 };
 
 #endif /* TextTexture_hpp */

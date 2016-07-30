@@ -13,8 +13,8 @@ using namespace std;
 TextTexture::TextTexture(SDL_Renderer* r, const string& path, const string& name, const string& textToRender)
 {
     renderer = r;
-    font = TTF_OpenFont((path + "/" + name).c_str(), 26);
-    SDL_Surface* textSurface = TTF_RenderText_Blended(font, textToRender.c_str(), textColor);
+    font = TTF_OpenFont((path + "/" + name).c_str(), 30);
+    SDL_Surface* textSurface = TTF_RenderText_Blended(font, textToRender.c_str(), textColorRed);
     texture = SDL_CreateTextureFromSurface(GetRenderer(), textSurface);
     width = textSurface->w;
     height = textSurface->h;
@@ -35,9 +35,22 @@ void TextTexture::Draw(int x, int y)
     SDL_RenderCopy(renderer, texture, NULL, &renderQuad);
 }
 
-void TextTexture::Update(const string& textToRender)
+void TextTexture::Update(const string& textToRender, int stateColor)
 {
-    SDL_Surface* textSurface = TTF_RenderText_Blended(font, textToRender.c_str(), textColor);
+    SDL_Color color;
+    if (stateColor == 0)
+    {
+        color = textColorRed;
+    }
+    else if (stateColor == 1)
+    {
+        color = textColorBlue;
+    }
+    else
+    {
+        color = textColorBlack;
+    }
+    SDL_Surface* textSurface = TTF_RenderText_Blended(font, textToRender.c_str(), color);
     texture = SDL_CreateTextureFromSurface(GetRenderer(), textSurface);
     width = textSurface->w;
     height = textSurface->h;

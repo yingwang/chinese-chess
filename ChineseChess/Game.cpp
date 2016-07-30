@@ -62,11 +62,6 @@ void Game::RenderTextures()
 {
     backgroundTexture->Draw();
     
-    for (int i = 0; i < textTexture.size() - 1; i++)
-    {
-        textTexture[i]->Draw(Config::TEXT_X_OFFSET, Config::TEXT_Y_OFFSET + Config::TEXT_Y_GAP * i);
-    }
-    
     string status;
     switch (currentGameState)
     {
@@ -82,7 +77,12 @@ void Game::RenderTextures()
         default:
             break;
     }
-    textTexture[0]->Update(status.c_str());
+    textTexture[0]->Update(status.c_str(), currentGameState);
+    
+    for (int i = 0; i < textTexture.size(); i++)
+    {
+        textTexture[i]->Draw(Config::TEXT_X_OFFSET, Config::TEXT_Y_OFFSET + Config::TEXT_Y_GAP * i);
+    }
     
     int pieceWidth = PieceTexture::GetTotalWidth();
     int pieceHeight = PieceTexture::GetTotalHeight();
@@ -202,6 +202,7 @@ void Game::OnMouseButtonUp(int xPos, int yPos)
                     if (currentMove.GetToPiece()->GetCharacter() == PieceFactory::GENERAL_BLUE)
                     {
                         currentGameState = GameState::END;
+                        winner = 0;
                     }
                     else
                     {
@@ -213,6 +214,7 @@ void Game::OnMouseButtonUp(int xPos, int yPos)
                     if (currentMove.GetToPiece()->GetCharacter() == PieceFactory::GENERAL_RED)
                     {
                         currentGameState = GameState::END;
+                        winner = 1;
                     }
                     else
                     {

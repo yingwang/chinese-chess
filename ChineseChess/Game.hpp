@@ -25,6 +25,7 @@ class Game
 private:
     int numOfRow;
     int numOfCol;
+    int winner;
     
     SDL_Window* window;
     SDL_Renderer* renderer;
