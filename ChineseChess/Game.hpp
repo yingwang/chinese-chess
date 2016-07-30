@@ -18,6 +18,7 @@
 #include "Piece.hpp"
 #include "Level.hpp"
 #include "Move.hpp"
+#include "TextTexture.hpp"
 
 class Game
 {
@@ -35,6 +36,7 @@ private:
     
     Texture* backgroundTexture;
     std::vector<PieceTexture*> pieceTexture;
+    std::vector<TextTexture*> textTexture;
     
     void Init();
     void LoadTextures();

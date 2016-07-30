@@ -20,6 +20,7 @@
 		3C539B821D40177F00BCEE59 /* Soldier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3C539B801D40177F00BCEE59 /* Soldier.cpp */; };
 		3C539B851D40257500BCEE59 /* PieceFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3C539B831D40257500BCEE59 /* PieceFactory.cpp */; };
 		3C539B881D402D7B00BCEE59 /* None.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3C539B861D402D7B00BCEE59 /* None.cpp */; };
+		3C58EC591D4D4B69000D27FB /* TextTexture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3C58EC571D4D4B69000D27FB /* TextTexture.cpp */; };
 		3C5D296D1D3D60570048DEA1 /* SDL2_image.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C5D29691D3D60570048DEA1 /* SDL2_image.framework */; };
 		3C5D296E1D3D60570048DEA1 /* SDL2_mixer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C5D296A1D3D60570048DEA1 /* SDL2_mixer.framework */; };
 		3C5D296F1D3D60570048DEA1 /* SDL2_ttf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C5D296B1D3D60570048DEA1 /* SDL2_ttf.framework */; };
@@ -68,6 +69,10 @@
 		3C539B841D40257500BCEE59 /* PieceFactory.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PieceFactory.hpp; sourceTree = "<group>"; };
 		3C539B861D402D7B00BCEE59 /* None.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = None.cpp; sourceTree = "<group>"; };
 		3C539B871D402D7B00BCEE59 /* None.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = None.hpp; sourceTree = "<group>"; };
+		3C58EC571D4D4B69000D27FB /* TextTexture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TextTexture.cpp; sourceTree = "<group>"; };
+		3C58EC581D4D4B69000D27FB /* TextTexture.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = TextTexture.hpp; sourceTree = "<group>"; };
+		3C58EC5A1D4D4BB0000D27FB /* FreeMono.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FreeMono.ttf; sourceTree = "<group>"; };
+		3C58EC5B1D4D4BB0000D27FB /* FreeMonoBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FreeMonoBold.ttf; sourceTree = "<group>"; };
 		3C5D29691D3D60570048DEA1 /* SDL2_image.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_image.framework; path = ../../Library/Frameworks/SDL2_image.framework; sourceTree = "<group>"; };
 		3C5D296A1D3D60570048DEA1 /* SDL2_mixer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_mixer.framework; path = ../../Library/Frameworks/SDL2_mixer.framework; sourceTree = "<group>"; };
 		3C5D296B1D3D60570048DEA1 /* SDL2_ttf.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_ttf.framework; path = ../../Library/Frameworks/SDL2_ttf.framework; sourceTree = "<group>"; };
@@ -201,6 +206,8 @@
 				3C082BA01D3E9AED00579000 /* Level.hpp */,
 				3C082BA21D3EC2EA00579000 /* Move.cpp */,
 				3C082BA31D3EC2EA00579000 /* Move.hpp */,
+				3C58EC571D4D4B69000D27FB /* TextTexture.cpp */,
+				3C58EC581D4D4B69000D27FB /* TextTexture.hpp */,
 			);
 			path = ChineseChess;
 			sourceTree = "<group>";
@@ -219,6 +226,8 @@
 				3CFED6581D3C309F0015439C /* bxiang.png */,
 				3CFED6591D3C309F0015439C /* bzu.png */,
 				3CFED65A1D3C309F0015439C /* CloseNormal.png */,
+				3C58EC5A1D4D4BB0000D27FB /* FreeMono.ttf */,
+				3C58EC5B1D4D4BB0000D27FB /* FreeMonoBold.ttf */,
 				3CFED65B1D3C309F0015439C /* CloseSelected.png */,
 				3CFED65C1D3C309F0015439C /* closeVolice.png */,
 				3CFED65D1D3C309F0015439C /* difficulty.jpg */,
@@ -313,6 +322,7 @@
 				3C082B9B1D3E984C00579000 /* Piece.cpp in Sources */,
 				3C539B7F1D40174D00BCEE59 /* Cannon.cpp in Sources */,
 				3C5D29741D3D7E300048DEA1 /* Texture.cpp in Sources */,
+				3C58EC591D4D4B69000D27FB /* TextTexture.cpp in Sources */,
 				3CFED6491D3C2CFC0015439C /* main.cpp in Sources */,
 				3CFED6711D3C31550015439C /* Game.cpp in Sources */,
 			);

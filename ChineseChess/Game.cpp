@@ -55,11 +55,34 @@ void Game::LoadTextures()
     pieceTexture.push_back(new PieceTexture(renderer, "Resources", "rpao.png"));
     pieceTexture.push_back(new PieceTexture(renderer, "Resources", "bzu.png"));
     pieceTexture.push_back(new PieceTexture(renderer, "Resources", "rbing.png"));
+    textTexture.push_back(new TextTexture(renderer, "Resources", "FreeMonoBold.ttf", "RED"));
 }
 
 void Game::RenderTextures()
 {
     backgroundTexture->Draw();
+    
+    for (int i = 0; i < textTexture.size() - 1; i++)
+    {
+        textTexture[i]->Draw(Config::TEXT_X_OFFSET, Config::TEXT_Y_OFFSET + Config::TEXT_Y_GAP * i);
+    }
+    
+    string status;
+    switch (currentGameState)
+    {
+        case GameState::BLUE_TURN:
+            status = "BLUE";
+            break;
+        case GameState::RED_TURN:
+            status = "RED";
+            break;
+        case GameState::END:
+            status = "END";
+            break;
+        default:
+            break;
+    }
+    textTexture[0]->Update(status.c_str());
     
     int pieceWidth = PieceTexture::GetTotalWidth();
     int pieceHeight = PieceTexture::GetTotalHeight();
@@ -115,6 +138,13 @@ void Game::Close()
         delete pieceTexture[i];
         pieceTexture[i] = nullptr;
     }
+    
+    for (int i = 0; i < textTexture.size(); i++)
+    {
+        delete textTexture[i];
+        textTexture[i] = nullptr;
+    }
+    
     
     delete  backgroundTexture;
     backgroundTexture = nullptr;
