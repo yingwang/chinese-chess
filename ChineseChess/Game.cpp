@@ -138,6 +138,11 @@ void Game::OnMouseButtonDown(int xPos, int yPos)
     if (currentMove.GetFromRow() < 0)
     {
         currentMove.SetFromLocation(xPos, yPos);
+        if (pieces[currentMove.GetFromRow()][currentMove.GetFromCol()]->GetCharacter() == PieceFactory::NONE)
+        {
+            currentMove.ResetMove();
+            currentMove.ResetValidMove();
+        }
     }
 }
 
