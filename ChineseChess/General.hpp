@@ -18,9 +18,10 @@ class General : public Piece
 private:
 
 public:
-    General(int color) { character = 0 + color; }
+    General(int color) { _character = 0 + color; }
     virtual ~General() {};
-    virtual std::vector<Position> PossibleMoves();
+    virtual std::unordered_map<int, bool> PossibleMoves(std::vector< std::vector<Piece*> >& pieces);
+    virtual bool ValidMove(int row, int col);
 };
 
 #endif /* General_hpp */

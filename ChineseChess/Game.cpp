@@ -151,7 +151,10 @@ void Game::OnMouseButtonUp(int xPos, int yPos)
         currentMove.SetToPiece(pieces[currentMove.GetToRow()][currentMove.GetToCol()]);
         if (currentMove.GetFromPiece()->GetCharacter() != PieceFactory::PieceCharacter::NONE)
         {
-            PerformMove();
+            if ((currentMove.GetFromPiece()->PossibleMoves(pieces)[currentMove.GetToRow() * 10 + currentMove.GetToCol()] == true) && (currentMove.GetFromPiece()->GetColor() != currentMove.GetToPiece()->GetColor()))
+            {
+                PerformMove();
+            }
         }
         currentMove.ResetMove();
         currentMove.ResetValidMove();

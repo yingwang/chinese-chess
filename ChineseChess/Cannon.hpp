@@ -16,9 +16,10 @@ class Cannon : public Piece
 private:
     
 public:
-    Cannon(int color) { character = 10 + color; }
+    Cannon(int color) { _character = 10 + color; }
     virtual ~Cannon() {};
-    virtual std::vector<Position> PossibleMoves();
+    virtual std::unordered_map<int, bool> PossibleMoves(std::vector< std::vector<Piece*> >& pieces);
+    bool ValidMove(int row, int col);
 };
 
 #endif /* Cannon_hpp */

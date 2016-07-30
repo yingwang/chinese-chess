@@ -7,9 +7,62 @@
 //
 
 #include "Horse.hpp"
+#include "PieceFactory.hpp"
 
-std::vector<Position> Horse::PossibleMoves()
+std::unordered_map<int, bool> Horse::PossibleMoves(std::vector< std::vector<Piece*> >& pieces)
 {
-    std::vector<Position> pm;
+    _pieces = pieces;
+    std::unordered_map<int, bool> pm;
+    if (ValidMove(_row - 2, _col - 1))
+    {
+        pm[(_row - 2) * 10 + _col - 1] = true;
+    }
+    if (ValidMove(_row + 2, _col - 1))
+    {
+        pm[(_row + 2) * 10 + _col - 1] = true;
+    }
+    if (ValidMove(_row - 2, _col + 1))
+    {
+        pm[(_row - 2) * 10 + _col + 1] = true;
+    }
+    if (ValidMove(_row + 2, _col + 1))
+    {
+        pm[(_row + 2)* 10 + _col + 1] = true;
+    }
+    
+    if (ValidMove(_row - 1, _col - 2))
+    {
+        pm[(_row - 1) * 10 + _col - 2] = true;
+    }
+    if (ValidMove(_row + 1, _col - 2))
+    {
+        pm[(_row + 1) * 10 + _col - 2] = true;
+    }
+    if (ValidMove(_row - 1, _col + 2))
+    {
+        pm[(_row - 1) * 10 + _col + 2] = true;
+    }
+    if (ValidMove(_row + 1, _col + 2))
+    {
+        pm[(_row + 1)* 10 + _col + 2] = true;
+    }
+    
     return pm;
+}
+
+bool Horse::ValidMove(int row, int col)
+{
+    if (!Piece::ValidMove(row, col)) return false;
+    
+    if (abs(_row - row) == 2)
+    {
+        if (_pieces[(row + _row) / 2][_col]->GetCharacter() != PieceFactory::NONE) return false;
+    }
+    else if (abs(_col - col) == 2)
+    {
+        if (_pieces[_row][(col + _col) / 2]->GetCharacter() != PieceFactory::NONE) return false;
+    }
+    
+    
+    return true;
 }

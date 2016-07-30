@@ -10,35 +10,43 @@
 
 int Piece::GetCharacter()
 {
-    return character;
-}
-
-int Piece::GetColor()
-{
-    return color;
+    return _character;
 }
 
 int Piece::GetRow()
 {
-    return row;
+    return _row;
 }
 
 int Piece::GetCol()
 {
-    return col;
+    return _col;
 }
 
 void Piece::SetRow(int r)
 {
-    row = r;
+    _row = r;
 }
 
 void Piece::SetCol(int c)
 {
-    col = c;
+    _col = c;
 }
 
 void Piece::SetCharacter(int c)
 {
-    character = c;
+    _character = c;
+}
+
+bool Piece::InBoard(int row, int col)
+{
+    if ((row >= Config::NUM_OF_ROW) || (row < 0)) return false;
+    if ((col >= Config::NUM_OF_COL) || (col < 0)) return false;
+    return true;
+}
+
+bool Piece::ValidMove(int row, int col)
+{
+    if (!InBoard(row, col)) return false;
+    return true;
 }

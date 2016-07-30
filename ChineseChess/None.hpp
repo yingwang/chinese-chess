@@ -18,9 +18,9 @@ class None : public Piece
 private:
     
 public:
-    None(int color) { character = 14; }
+    None(int color) { _character = 14; }
     virtual ~None() {};
-    virtual std::vector<Position> PossibleMoves();
+    virtual std::unordered_map<int, bool> PossibleMoves(std::vector< std::vector<Piece*> >& pieces);
 };
 
 #endif /* None_hpp */

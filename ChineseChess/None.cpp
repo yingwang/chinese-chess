@@ -8,8 +8,8 @@
 
 #include "None.hpp"
 
-std::vector<Position> None::PossibleMoves()
+std::unordered_map<int, bool> None::PossibleMoves(std::vector< std::vector<Piece*> >& pieces)
 {
-    std::vector<Position> pm;
+    std::unordered_map<int, bool> pm;
     return pm;
 }

@@ -16,9 +16,10 @@ class Horse : public Piece
 private:
     
 public:
-    Horse(int color) { character = 6 + color; }
+    Horse(int color) { _character = 6 + color; }
     virtual ~Horse() {};
-    virtual std::vector<Position> PossibleMoves();
+    virtual std::unordered_map<int, bool> PossibleMoves(std::vector< std::vector<Piece*> >& pieces);
+    bool ValidMove(int row, int col);
 };
 
 #endif /* Horse_hpp */

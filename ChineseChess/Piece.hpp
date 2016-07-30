@@ -10,29 +10,32 @@
 #define Piece_hpp
 
 #include <iostream>
+#include <unordered_map>
 #include <vector>
-
-typedef std::pair<int, int> Position;
+#include "Config.h"
 
 class Piece
 {
 protected:
-    int character;
-    int color;
-    int row;
-    int col;
-    std::vector<Position> possibleMoves;
+    int _character;
+    int _color;
+    int _row;
+    int _col;
+    std::vector< std::vector<Piece*> > _pieces;
+    std::unordered_map<int, bool> _possibleMoves;
     
 public:
-    virtual std::vector<Position> PossibleMoves() = 0;
+    virtual std::unordered_map<int, bool> PossibleMoves(std::vector< std::vector<Piece*> >& pieces) = 0;
     virtual ~Piece() {};
     int GetCharacter();
-    int GetColor();
+    int GetColor() const { if (_character == 14) return -1; else return (_character % 2); };
     int GetRow();
     int GetCol();
     void SetRow(int r);
     void SetCol(int c);
     void SetCharacter(int c);
+    bool InBoard(int row, int col);
+    virtual bool ValidMove(int row, int col);
 };
 
 #endif /* Piece_hpp */

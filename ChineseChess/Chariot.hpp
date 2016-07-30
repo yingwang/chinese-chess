@@ -16,9 +16,10 @@ class Chariot : public Piece
 private:
     
 public:
-    Chariot(int color) { character = 8 + color; }
+    Chariot(int color) { _character = 8 + color; }
     virtual ~Chariot() {};
-    virtual std::vector<Position> PossibleMoves();
+    virtual std::unordered_map<int, bool> PossibleMoves(std::vector< std::vector<Piece*> >& pieces);
+    bool ValidMove(int row, int col);
 };
 
 #endif /* Chariot_hpp */

@@ -16,9 +16,10 @@ class Soldier : public Piece
 private:
     
 public:
-    Soldier(int color) { character = 12 + color; }
+    Soldier(int color) { _character = 12 + color; }
     virtual ~Soldier() {};
-    virtual std::vector<Position> PossibleMoves();
+    virtual std::unordered_map<int, bool> PossibleMoves(std::vector< std::vector<Piece*> >& pieces);
+    bool ValidMove(int row, int col);
 };
 
 #endif /* Soldier_hpp */

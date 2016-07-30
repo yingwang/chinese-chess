@@ -16,9 +16,10 @@ class Elephant : public Piece
 private:
     
 public:
-    Elephant(int color) { character = 4 + color; }
+    Elephant(int color) { _character = 4 + color; }
     virtual ~Elephant() {};
-    virtual std::vector<Position> PossibleMoves();
+    virtual std::unordered_map<int, bool> PossibleMoves(std::vector< std::vector<Piece*> >& pieces);
+    bool ValidMove(int row, int col);
 };
 
 #endif /* Elephant_hpp */

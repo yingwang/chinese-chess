@@ -29,12 +29,12 @@ private:
     SDL_Renderer* renderer;
     SDL_Event* event;
 
+    std::vector< std::vector<Piece*> > pieces;
     Level* level;
     Move currentMove;
     
     Texture* backgroundTexture;
     std::vector<PieceTexture*> pieceTexture;
-    std::vector< vector<Piece*> > pieces;
     
     void Init();
     void LoadTextures();

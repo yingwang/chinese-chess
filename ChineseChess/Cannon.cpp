@@ -7,9 +7,64 @@
 //
 
 #include "Cannon.hpp"
+#include "PieceFactory.hpp"
 
-std::vector<Position> Cannon::PossibleMoves()
+std::unordered_map<int, bool> Cannon::PossibleMoves(std::vector< std::vector<Piece*> >& pieces)
 {
-    std::vector<Position> pm;
+    _pieces = pieces;
+    std::unordered_map<int, bool> pm;
+    
+    for (int i = 0 - Config::NUM_OF_ROW; i < Config::NUM_OF_ROW; i++)
+    {
+        if (ValidMove(_row + i, _col))
+        {
+            pm[(_row + i) * 10 + _col] = true;
+        }
+    }
+    
+    for (int i = 0 - Config::NUM_OF_COL; i < Config::NUM_OF_COL; i++)
+    {
+        if (ValidMove(_row, _col + i))
+        {
+            pm[_row * 10 + _col + i] = true;
+        }
+    }
+    
     return pm;
+}
+
+bool Cannon::ValidMove(int row, int col)
+{
+    if (!Piece::ValidMove(row, col)) return false;
+    
+    int count = 0;
+    
+    if ((_row - row) != 0)
+    {
+        int a = std::min(_row, row);
+        int b = std::max(_row, row);
+        for (int i = a + 1; i < b; i++)
+        {
+            if (_pieces[i][col]->GetCharacter() != PieceFactory::NONE)
+            {
+                count++;
+            }
+        }
+    }
+    else if ((_col - col) != 0)
+    {
+        int a = std::min(_col, col);
+        int b = std::max(_col, col);
+        for (int i = a + 1; i < b; i++)
+        {
+            if (_pieces[row][i]->GetCharacter() != PieceFactory::NONE)
+            {
+                count++;
+            }
+        }
+    }
+    
+    if ((count == 1) && (_pieces[row][col]->GetCharacter() != PieceFactory::NONE)) return true;
+    if ((count == 0) && (_pieces[row][col]->GetCharacter() == PieceFactory::NONE)) return true;
+    return false;
 }

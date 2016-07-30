@@ -16,9 +16,10 @@ class Advisor : public Piece
 private:
     
 public:
-    Advisor(int color) { character = 2 + color; }
+    Advisor(int color) { _character = 2 + color; }
     virtual ~Advisor() {};
-    virtual std::vector<Position> PossibleMoves();
+    virtual std::unordered_map<int, bool> PossibleMoves(std::vector< std::vector<Piece*> >& pieces);
+    bool ValidMove(int row, int col);
 };
 
 #endif /* Advisor_hpp */
