@@ -13,3 +13,9 @@ std::unordered_map<int, bool> None::PossibleMoves(std::vector< std::vector<Piece
     std::unordered_map<int, bool> pm;
     return pm;
 }
+
+std::vector<int> None::PossibleMovesAsVector(std::vector< std::vector<Piece*> >& pieces)
+{
+    std::vector<int> pm;
+    return pm;
+}

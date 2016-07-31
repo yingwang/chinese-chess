@@ -16,7 +16,7 @@ Game::Game()
     Game::quitGame = false;
     currentGameState = GameState::RED_TURN;
     winner = -1;
-    modeAI = 1; // AI play Blue
+    modeAI = 0; // AI play Blue
 }
 
 Game::~Game()
@@ -279,7 +279,7 @@ void Game::AIPlay()
         if (currentMove.GetToPiece()->GetCharacter() == PieceFactory::GENERAL_BLUE)
         {
             currentGameState = GameState::END;
-            winner = 0;
+            winner = 1;
         }
         else
         {
@@ -291,7 +291,7 @@ void Game::AIPlay()
         if (currentMove.GetToPiece()->GetCharacter() == PieceFactory::GENERAL_RED)
         {
             currentGameState = GameState::END;
-            winner = 1;
+            winner = 0;
         }
         else
         {
@@ -305,19 +305,21 @@ void Game::AIPlay()
 
 void Game::Update()
 {
-    switch (currentGameState) {
+    switch (currentGameState)
+    {
         case GameState::RED_TURN:
-            if (modeAI != 0)
+            if (modeAI != 1)
             {
                 Input(false);
             }
             else
             {
                 Input(true);
+                AIPlay();
             }
             break;
         case GameState::BLUE_TURN:
-            if (modeAI != 1)
+            if (modeAI != 0)
             {
                 Input(false);
             }

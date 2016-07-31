@@ -26,8 +26,8 @@ class Game
 private:
     int numOfRow;
     int numOfCol;
-    int winner; // 0: RED; 1: BLUE;
-    int modeAI; // 0: AI play RED; 1: AI play BLUE;
+    int winner; // 0: BLUE; 1: RED;
+    int modeAI; // 0: AI play BLUE; 1: AI play RED;
     
     SDL_Window* window;
     SDL_Renderer* renderer;

@@ -33,10 +33,33 @@ std::unordered_map<int, bool> Elephant::PossibleMoves(std::vector< std::vector<P
     return pm;
 }
 
+std::vector<int> Elephant::PossibleMovesAsVector(std::vector< std::vector<Piece*> >& pieces)
+{
+    _pieces = pieces;
+    std::vector<int> pm;
+    if (ValidMove(_row - 2, _col - 2))
+    {
+        pm.push_back((_row - 2) * 10 + _col - 2);
+    }
+    if (ValidMove(_row + 2, _col - 2))
+    {
+        pm.push_back((_row + 2) * 10 + _col - 2);
+    }
+    if (ValidMove(_row - 2, _col + 2))
+    {
+        pm.push_back((_row - 2) * 10 + _col + 2);
+    }
+    if (ValidMove(_row + 2, _col + 2))
+    {
+        pm.push_back((_row + 2)* 10 + _col + 2);
+    }
+    return pm;
+}
+
 bool Elephant::ValidMove(int row, int col)
 {
     if (!Piece::ValidMove(row, col)) return false;
-    
+    if (_pieces[_row][_col]->GetColor() == _pieces[row][col]->GetColor()) return false;
     // BLUE
     if (GetColor() == 0)
     {

@@ -33,9 +33,34 @@ std::unordered_map<int, bool> Chariot::PossibleMoves(std::vector< std::vector<Pi
     return pm;
 }
 
+std::vector<int> Chariot::PossibleMovesAsVector(std::vector< std::vector<Piece*> >& pieces)
+{
+    _pieces = pieces;
+    std::vector<int> pm;
+    
+    for (int i = 0 - Config::NUM_OF_ROW; i < Config::NUM_OF_ROW; i++)
+    {
+        if (ValidMove(_row + i, _col))
+        {
+            pm.push_back((_row + i) * 10 + _col);
+        }
+    }
+    
+    for (int i = 0 - Config::NUM_OF_COL; i < Config::NUM_OF_COL; i++)
+    {
+        if (ValidMove(_row, _col + i))
+        {
+            pm.push_back(_row * 10 + _col + i);
+        }
+    }
+    
+    return pm;
+}
+
 bool Chariot::ValidMove(int row, int col)
 {
     if (!Piece::ValidMove(row, col)) return false;
+    if (_pieces[_row][_col]->GetColor() == _pieces[row][col]->GetColor()) return false;
     if ((_row - row) != 0)
     {
         int a = std::min(_row, row);

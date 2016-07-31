@@ -48,5 +48,6 @@ bool Piece::InBoard(int row, int col)
 bool Piece::ValidMove(int row, int col)
 {
     if (!InBoard(row, col)) return false;
+    if ((_row == row) && (_col == col)) return false;
     return true;
 }

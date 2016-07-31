@@ -26,6 +26,7 @@ protected:
     
 public:
     virtual std::unordered_map<int, bool> PossibleMoves(std::vector< std::vector<Piece*> >& pieces) = 0;
+    virtual std::vector<int> PossibleMovesAsVector(std::vector< std::vector<Piece*> >& pieces) = 0;
     virtual ~Piece() {};
     int GetCharacter();
     int GetColor() const { if (_character == 14) return -1; else return (_character % 2); };

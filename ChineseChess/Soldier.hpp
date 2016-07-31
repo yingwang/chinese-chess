@@ -19,6 +19,7 @@ public:
     Soldier(int color) { _character = 12 + color; }
     virtual ~Soldier() {};
     virtual std::unordered_map<int, bool> PossibleMoves(std::vector< std::vector<Piece*> >& pieces);
+    virtual std::vector<int> PossibleMovesAsVector(std::vector< std::vector<Piece*> >& pieces);
     bool ValidMove(int row, int col);
 };
 
