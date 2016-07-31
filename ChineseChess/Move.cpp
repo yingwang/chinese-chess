@@ -36,7 +36,7 @@ int Move::GetFromRow()
 
 void Move::SetFromCol(int c)
 {
-    toCol = c;
+    fromCol = c;
 }
 
 int Move::GetFromCol()

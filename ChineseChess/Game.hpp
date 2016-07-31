@@ -19,13 +19,15 @@
 #include "Level.hpp"
 #include "Move.hpp"
 #include "TextTexture.hpp"
+#include "AI.hpp"
 
 class Game
 {
 private:
     int numOfRow;
     int numOfCol;
-    int winner;
+    int winner; // 0: RED; 1: BLUE;
+    int modeAI; // 0: AI play RED; 1: AI play BLUE;
     
     SDL_Window* window;
     SDL_Renderer* renderer;
@@ -43,11 +45,12 @@ private:
     void LoadTextures();
     void RenderTextures();
     void Close();
-    void Input();
+    void Input(bool isAI);
+    void AIPlay();
     void LoadLevel();
     void OnMouseButtonDown(int xPos, int yPos);
     void OnMouseButtonUp(int xPos, int yPos);
-    void PerformMove();
+    void PerformMove(Move& move);
 
 public:
     enum GameState {
@@ -59,6 +62,7 @@ public:
     Game();
     ~Game();
     static bool quitGame;
+    void Update();
     void MainLoop();
     GameState currentGameState;
 };

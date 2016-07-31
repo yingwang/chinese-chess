@@ -15,6 +15,8 @@ Game::Game()
 {
     Game::quitGame = false;
     currentGameState = GameState::RED_TURN;
+    winner = -1;
+    modeAI = 1; // AI play Blue
 }
 
 Game::~Game()
@@ -196,7 +198,7 @@ void Game::OnMouseButtonUp(int xPos, int yPos)
         {
             if ((currentMove.GetFromPiece()->PossibleMoves(pieces)[currentMove.GetToRow() * 10 + currentMove.GetToCol()] == true) && (currentMove.GetFromPiece()->GetColor() != currentMove.GetToPiece()->GetColor()))
             {
-                PerformMove();
+                PerformMove(currentMove);
                 if (currentGameState == GameState::RED_TURN)
                 {
                     if (currentMove.GetToPiece()->GetCharacter() == PieceFactory::GENERAL_BLUE)
@@ -228,17 +230,17 @@ void Game::OnMouseButtonUp(int xPos, int yPos)
     }
 }
 
-void Game::PerformMove()
+void Game::PerformMove(Move& move)
 {
-    pieces[currentMove.GetFromRow()][currentMove.GetFromCol()] = PieceFactory::createPiece(PieceFactory::PieceCharacter::NONE);
-    pieces[currentMove.GetFromRow()][currentMove.GetFromCol()]->SetRow(currentMove.GetFromRow());
-    pieces[currentMove.GetFromRow()][currentMove.GetFromCol()]->SetCol(currentMove.GetFromCol());
-    pieces[currentMove.GetToRow()][currentMove.GetToCol()]= currentMove.GetFromPiece();
-    pieces[currentMove.GetToRow()][currentMove.GetToCol()]->SetRow(currentMove.GetToRow());
-    pieces[currentMove.GetToRow()][currentMove.GetToCol()]->SetCol(currentMove.GetToCol());
+    pieces[move.GetFromRow()][move.GetFromCol()] = PieceFactory::createPiece(PieceFactory::PieceCharacter::NONE);
+    pieces[move.GetFromRow()][move.GetFromCol()]->SetRow(move.GetFromRow());
+    pieces[move.GetFromRow()][move.GetFromCol()]->SetCol(move.GetFromCol());
+    pieces[move.GetToRow()][move.GetToCol()]= move.GetFromPiece();
+    pieces[move.GetToRow()][move.GetToCol()]->SetRow(move.GetToRow());
+    pieces[move.GetToRow()][move.GetToCol()]->SetCol(move.GetToCol());
 }
 
-void Game::Input()
+void Game::Input(bool isAI)
 {
     int xPos, yPos;
     switch (event->type)
@@ -247,6 +249,7 @@ void Game::Input()
             quitGame = true;
             break;
         case SDL_MOUSEBUTTONDOWN:
+            if (isAI) break;
             if (currentGameState != GameState::END)
             {
                 SDL_GetMouseState(&xPos, &yPos);
@@ -254,11 +257,78 @@ void Game::Input()
             }
             break;
         case SDL_MOUSEBUTTONUP:
+            if (isAI) break;
             if (currentGameState != GameState::END)
             {
                 SDL_GetMouseState(&xPos, &yPos);
                 OnMouseButtonUp(xPos, yPos);
             }
+            break;
+        default:
+            break;
+    }
+}
+
+void Game::AIPlay()
+{
+    currentMove = AI(pieces, modeAI).BestMove();
+    PerformMove(currentMove);
+    
+    if (currentGameState == GameState::RED_TURN)
+    {
+        if (currentMove.GetToPiece()->GetCharacter() == PieceFactory::GENERAL_BLUE)
+        {
+            currentGameState = GameState::END;
+            winner = 0;
+        }
+        else
+        {
+            currentGameState = GameState::BLUE_TURN;
+        }
+    }
+    else
+    {
+        if (currentMove.GetToPiece()->GetCharacter() == PieceFactory::GENERAL_RED)
+        {
+            currentGameState = GameState::END;
+            winner = 1;
+        }
+        else
+        {
+            currentGameState = GameState::RED_TURN;
+        }
+    }
+
+    currentMove.ResetMove();
+    currentMove.ResetValidMove();
+}
+
+void Game::Update()
+{
+    switch (currentGameState) {
+        case GameState::RED_TURN:
+            if (modeAI != 0)
+            {
+                Input(false);
+            }
+            else
+            {
+                Input(true);
+            }
+            break;
+        case GameState::BLUE_TURN:
+            if (modeAI != 1)
+            {
+                Input(false);
+            }
+            else
+            {
+                Input(true);
+                AIPlay();
+            }
+            break;
+        case GameState::END:
+            Input(false);
             break;
         default:
             break;
@@ -276,7 +346,7 @@ void Game::MainLoop()
         while(SDL_PollEvent(event) != 0)
         {
             SDL_RenderClear(renderer);
-            Input();
+            Update();
             RenderTextures();
             SDL_RenderPresent(renderer);
         }
