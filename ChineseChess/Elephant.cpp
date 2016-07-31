@@ -10,50 +10,27 @@
 #include "Game.hpp"
 #include "PieceFactory.hpp"
 
-std::unordered_map<int, bool> Elephant::PossibleMoves(std::vector< std::vector<Piece*> >& pieces)
-{
-    _pieces = pieces;
-    std::unordered_map<int, bool> pm;
-    if (ValidMove(_row - 2, _col - 2))
-    {
-        pm[(_row - 2) * 10 + _col - 2] = true;
-    }
-    if (ValidMove(_row + 2, _col - 2))
-    {
-        pm[(_row + 2) * 10 + _col - 2] = true;
-    }
-    if (ValidMove(_row - 2, _col + 2))
-    {
-        pm[(_row - 2) * 10 + _col + 2] = true;
-    }
-    if (ValidMove(_row + 2, _col + 2))
-    {
-        pm[(_row + 2)* 10 + _col + 2] = true;
-    }
-    return pm;
-}
-
 std::vector<int> Elephant::PossibleMovesAsVector(std::vector< std::vector<Piece*> >& pieces)
 {
     _pieces = pieces;
-    std::vector<int> pm;
+    _possibleMovesAsVector.clear();
     if (ValidMove(_row - 2, _col - 2))
     {
-        pm.push_back((_row - 2) * 10 + _col - 2);
+        _possibleMovesAsVector.push_back((_row - 2) * 10 + _col - 2);
     }
     if (ValidMove(_row + 2, _col - 2))
     {
-        pm.push_back((_row + 2) * 10 + _col - 2);
+        _possibleMovesAsVector.push_back((_row + 2) * 10 + _col - 2);
     }
     if (ValidMove(_row - 2, _col + 2))
     {
-        pm.push_back((_row - 2) * 10 + _col + 2);
+        _possibleMovesAsVector.push_back((_row - 2) * 10 + _col + 2);
     }
     if (ValidMove(_row + 2, _col + 2))
     {
-        pm.push_back((_row + 2)* 10 + _col + 2);
+        _possibleMovesAsVector.push_back((_row + 2)* 10 + _col + 2);
     }
-    return pm;
+    return _possibleMovesAsVector;
 }
 
 bool Elephant::ValidMove(int row, int col)
@@ -71,7 +48,7 @@ bool Elephant::ValidMove(int row, int col)
         if (row < 5) return false;
     }
     
-    if (_pieces[(row + _row) / 2][(col + _col) / 2]->GetCharacter() != PieceFactory::NONE) return false;
+    if (_pieces[(row + _row) / 2][(col + _col) / 2]->GetCharacter() != Piece::NONE) return false;
     
     return true;
 }

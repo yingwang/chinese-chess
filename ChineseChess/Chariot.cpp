@@ -9,40 +9,15 @@
 #include "Chariot.hpp"
 #include "PieceFactory.hpp"
 
-std::unordered_map<int, bool> Chariot::PossibleMoves(std::vector< std::vector<Piece*> >& pieces)
-{
-    _pieces = pieces;
-    std::unordered_map<int, bool> pm;
-    
-    for (int i = 0 - Config::NUM_OF_ROW; i < Config::NUM_OF_ROW; i++)
-    {
-        if (ValidMove(_row + i, _col))
-        {
-            pm[(_row + i) * 10 + _col] = true;
-        }
-    }
-    
-    for (int i = 0 - Config::NUM_OF_COL; i < Config::NUM_OF_COL; i++)
-    {
-        if (ValidMove(_row, _col + i))
-        {
-            pm[_row * 10 + _col + i] = true;
-        }
-    }
-    
-    return pm;
-}
-
 std::vector<int> Chariot::PossibleMovesAsVector(std::vector< std::vector<Piece*> >& pieces)
 {
     _pieces = pieces;
-    std::vector<int> pm;
-    
+    _possibleMovesAsVector.clear();
     for (int i = 0 - Config::NUM_OF_ROW; i < Config::NUM_OF_ROW; i++)
     {
         if (ValidMove(_row + i, _col))
         {
-            pm.push_back((_row + i) * 10 + _col);
+            _possibleMovesAsVector.push_back((_row + i) * 10 + _col);
         }
     }
     
@@ -50,11 +25,11 @@ std::vector<int> Chariot::PossibleMovesAsVector(std::vector< std::vector<Piece*>
     {
         if (ValidMove(_row, _col + i))
         {
-            pm.push_back(_row * 10 + _col + i);
+            _possibleMovesAsVector.push_back(_row * 10 + _col + i);
         }
     }
     
-    return pm;
+    return _possibleMovesAsVector;
 }
 
 bool Chariot::ValidMove(int row, int col)
@@ -67,7 +42,7 @@ bool Chariot::ValidMove(int row, int col)
         int b = std::max(_row, row);
         for (int i = a + 1; i < b; i++)
         {
-            if (_pieces[i][col]->GetCharacter() != PieceFactory::NONE) return false;
+            if (_pieces[i][col]->GetCharacter() != Piece::NONE) return false;
         }
     }
     else if ((_col - col) != 0)
@@ -76,7 +51,7 @@ bool Chariot::ValidMove(int row, int col)
         int b = std::max(_col, col);
         for (int i = a + 1; i < b; i++)
         {
-            if (_pieces[row][i]->GetCharacter() != PieceFactory::NONE) return false;
+            if (_pieces[row][i]->GetCharacter() != Piece::NONE) return false;
         }
     }
         

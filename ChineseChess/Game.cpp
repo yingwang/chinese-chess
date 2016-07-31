@@ -92,7 +92,7 @@ void Game::RenderTextures()
     {
         for (int col = 0; col < numOfCol; col++ )
         {
-            if ((pieces[row][col] == NULL) || (pieces[row][col]->GetCharacter() == PieceFactory::NONE))
+            if ((pieces[row][col] == NULL) || (pieces[row][col]->GetCharacter() == Piece::NONE))
             {
                 continue;
             }
@@ -114,7 +114,7 @@ void Game::LoadLevel()
         for (int col = 0; col < numOfCol; col++ )
         {
             int c = static_cast<int>(level->GetMap()[row * numOfCol + col]);
-            Piece* p = PieceFactory::createPiece(static_cast<PieceFactory::PieceCharacter>(c));
+            Piece* p = PieceFactory::createPiece(static_cast<Piece::PieceCharacter>(c));
             p->SetRow(row);
             p->SetCol(col);
             v.push_back(p);
@@ -171,7 +171,7 @@ void Game::OnMouseButtonDown(int xPos, int yPos)
     if (currentMove.GetFromRow() < 0)
     {
         currentMove.SetFromLocation(xPos, yPos);
-        if (pieces[currentMove.GetFromRow()][currentMove.GetFromCol()]->GetCharacter() == PieceFactory::NONE)
+        if (pieces[currentMove.GetFromRow()][currentMove.GetFromCol()]->GetCharacter() == Piece::NONE)
         {
             currentMove.ResetMove();
             currentMove.ResetValidMove();
@@ -194,14 +194,14 @@ void Game::OnMouseButtonUp(int xPos, int yPos)
     {
         currentMove.SetFromPiece(pieces[currentMove.GetFromRow()][currentMove.GetFromCol()]);
         currentMove.SetToPiece(pieces[currentMove.GetToRow()][currentMove.GetToCol()]);
-        if (currentMove.GetFromPiece()->GetCharacter() != PieceFactory::PieceCharacter::NONE)
+        if (currentMove.GetFromPiece()->GetCharacter() != Piece::PieceCharacter::NONE)
         {
             if ((currentMove.GetFromPiece()->PossibleMoves(pieces)[currentMove.GetToRow() * 10 + currentMove.GetToCol()] == true) && (currentMove.GetFromPiece()->GetColor() != currentMove.GetToPiece()->GetColor()))
             {
                 PerformMove(currentMove);
                 if (currentGameState == GameState::RED_TURN)
                 {
-                    if (currentMove.GetToPiece()->GetCharacter() == PieceFactory::GENERAL_BLUE)
+                    if (currentMove.GetToPiece()->GetCharacter() == Piece::GENERAL_BLUE)
                     {
                         currentGameState = GameState::END;
                         winner = 0;
@@ -213,7 +213,7 @@ void Game::OnMouseButtonUp(int xPos, int yPos)
                 }
                 else
                 {
-                    if (currentMove.GetToPiece()->GetCharacter() == PieceFactory::GENERAL_RED)
+                    if (currentMove.GetToPiece()->GetCharacter() == Piece::GENERAL_RED)
                     {
                         currentGameState = GameState::END;
                         winner = 1;
@@ -232,7 +232,7 @@ void Game::OnMouseButtonUp(int xPos, int yPos)
 
 void Game::PerformMove(Move& move)
 {
-    pieces[move.GetFromRow()][move.GetFromCol()] = PieceFactory::createPiece(PieceFactory::PieceCharacter::NONE);
+    pieces[move.GetFromRow()][move.GetFromCol()] = PieceFactory::createPiece(Piece::PieceCharacter::NONE);
     pieces[move.GetFromRow()][move.GetFromCol()]->SetRow(move.GetFromRow());
     pieces[move.GetFromRow()][move.GetFromCol()]->SetCol(move.GetFromCol());
     pieces[move.GetToRow()][move.GetToCol()]= move.GetFromPiece();
@@ -276,7 +276,7 @@ void Game::AIPlay()
     
     if (currentGameState == GameState::RED_TURN)
     {
-        if (currentMove.GetToPiece()->GetCharacter() == PieceFactory::GENERAL_BLUE)
+        if (currentMove.GetToPiece()->GetCharacter() == Piece::GENERAL_BLUE)
         {
             currentGameState = GameState::END;
             winner = 1;
@@ -288,7 +288,7 @@ void Game::AIPlay()
     }
     else
     {
-        if (currentMove.GetToPiece()->GetCharacter() == PieceFactory::GENERAL_RED)
+        if (currentMove.GetToPiece()->GetCharacter() == Piece::GENERAL_RED)
         {
             currentGameState = GameState::END;
             winner = 0;

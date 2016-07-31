@@ -20,7 +20,6 @@ private:
 public:
     None(int color) { _character = 14; }
     virtual ~None() {};
-    virtual std::unordered_map<int, bool> PossibleMoves(std::vector< std::vector<Piece*> >& pieces);
     virtual std::vector<int> PossibleMovesAsVector(std::vector< std::vector<Piece*> >& pieces);
 };
 

@@ -88,7 +88,7 @@ int AI::EvaluateState()
 
 void AI::PerformMove(Move move)
 {
-    _pieces[move.GetFromRow()][move.GetFromCol()] = PieceFactory::createPiece(PieceFactory::PieceCharacter::NONE);
+    _pieces[move.GetFromRow()][move.GetFromCol()] = PieceFactory::createPiece(Piece::NONE);
     _pieces[move.GetFromRow()][move.GetFromCol()]->SetRow(move.GetFromRow());
     _pieces[move.GetFromRow()][move.GetFromCol()]->SetCol(move.GetFromCol());
     _pieces[move.GetToRow()][move.GetToCol()]= move.GetFromPiece();

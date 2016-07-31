@@ -8,6 +8,24 @@
 
 #include "Piece.hpp"
 
+std::unordered_map<int, bool> Piece::PossibleMoves(std::vector< std::vector<Piece*> >& pieces)
+{
+    _possibleMovesAsVector.clear();
+    _possibleMoves.clear();
+    PossibleMovesAsVector(pieces);
+    for (int i = 0; i < _possibleMovesAsVector.size(); i++)
+    {
+        _possibleMoves[_possibleMovesAsVector[i]] = true;
+    }
+    return _possibleMoves;
+}
+
+std::vector<int> Piece::PossibleMovesAsVector(std::vector< std::vector<Piece*> >& pieces)
+{
+    _pieces = pieces;
+    return _possibleMovesAsVector;
+}
+
 int Piece::GetCharacter()
 {
     return _character;

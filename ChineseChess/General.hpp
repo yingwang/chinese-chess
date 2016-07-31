@@ -20,7 +20,6 @@ private:
 public:
     General(int color) { _character = 0 + color; }
     virtual ~General() {};
-    virtual std::unordered_map<int, bool> PossibleMoves(std::vector< std::vector<Piece*> >& pieces);
     virtual std::vector<int> PossibleMovesAsVector(std::vector< std::vector<Piece*> >& pieces);
     virtual bool ValidMove(int row, int col);
 };
