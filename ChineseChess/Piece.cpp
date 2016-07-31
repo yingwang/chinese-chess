@@ -67,5 +67,32 @@ bool Piece::ValidMove(int row, int col)
 {
     if (!InBoard(row, col)) return false;
     if ((_row == row) && (_col == col)) return false;
-    return true;
+    return CheckGenerals(row, col);
 }
+
+bool Piece::CheckGenerals(int row, int col)
+{
+    if (_col == col || _col < 3 || _col > 5) return true;
+    int rBlue = -1;
+    int rRed = -1;
+    for (int i = 0; i < Config::NUM_OF_ROW; i++)
+    {
+        if (_pieces[i][_col]->GetCharacter() == Piece::GENERAL_BLUE)
+        {
+            rBlue = i;
+        }
+        if (_pieces[i][_col]->GetCharacter() == Piece::GENERAL_RED)
+        {
+            rRed = i;
+        }
+    }
+    if ((rBlue == -1) || (rRed == -1)) return true;
+    for (int i = rBlue + 1; i < rRed; i++)
+    {
+        if (i == _row) continue; // this is the current move piece
+        if (_pieces[i][_col]->GetCharacter() != Piece::NONE) return true;
+    }
+    return false;
+}
+
+

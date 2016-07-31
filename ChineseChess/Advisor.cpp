@@ -48,48 +48,5 @@ bool Advisor::ValidMove(int row, int col)
         if (row < 7) return false;
     }
 
-    return CheckGeneralMeet();
-}
-
-bool Advisor::CheckGeneralMeet()
-{
-    int brow = -1, bcol = -1, rrow = -1, rcol = -1;
-    bool find = false;
-    for (int i = 0; i <= 2; i++)
-    {
-        if (find) break;
-        for (int j = 3; j <= 5; j++)
-        {
-            if (_pieces[i][j]->GetCharacter() == Piece::GENERAL_BLUE)
-            {
-                brow = i;
-                bcol = j;
-                break;
-            }
-        }
-    }
-    find = false;
-    for (int i = 7; i <= 9; i++)
-    {
-        if (find) break;
-        for (int j = 3; j <= 5; j++)
-        {
-            if (_pieces[i][j]->GetCharacter() == Piece::GENERAL_RED)
-            {
-                rrow = i;
-                rcol = j;
-                break;
-            }
-        }
-    }
-    
-    if (rcol != bcol) return true; // OK
-    
-    // They are on the same column, check if there is any piece in between
-    for (int i = brow + 1;  i < rrow; i++)
-    {
-        if (_pieces[i][rcol] != _pieces[_row][_col]) return true;
-        
-    }
-    return false;
+    return true;
 }

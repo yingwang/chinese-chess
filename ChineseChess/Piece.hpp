@@ -58,6 +58,7 @@ public:
     void SetCharacter(int c);
     bool InBoard(int row, int col);
     virtual bool ValidMove(int row, int col);
+    bool CheckGenerals(int row, int col);
 };
 
 #endif /* Piece_hpp */

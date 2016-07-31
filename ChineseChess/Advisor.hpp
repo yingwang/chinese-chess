@@ -20,7 +20,6 @@ public:
     virtual ~Advisor() {};
     virtual std::vector<int> PossibleMovesAsVector(std::vector< std::vector<Piece*> >& pieces);
     bool ValidMove(int row, int col);
-    bool CheckGeneralMeet();
 };
 
 #endif /* Advisor_hpp */
