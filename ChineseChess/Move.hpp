@@ -29,6 +29,8 @@ private:
 public:
     Move();
     ~Move();
+//    Move(const Move& move) { /* copy construction from rhs*/ }
+//    Move& operator=(const Move& move);
     
     void SetFromRow(int r);
     int GetFromRow();

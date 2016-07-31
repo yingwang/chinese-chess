@@ -20,6 +20,7 @@ class AI
 {
 private:
     Move _bestMove;
+    int _bestValue;
     int _numOfRow;
     int _numOfCol;
     std::vector< std::vector<Piece*> > _pieces;
@@ -27,6 +28,10 @@ private:
 public:
     AI(std::vector< std::vector<Piece*> >& pieces, int player);
     void SearchForBestMove();
+    int EvaluateMove(Move move);
+    int EvaluateState();
+    void PerformMove(Move move);
+    void RevertMove(Move move);
     Move BestMove();
 };
 
