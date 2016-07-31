@@ -75,11 +75,11 @@ int AI::EvaluateState()
         {
             if (_pieces[row][col]->GetColor() == _currentPlayer)
             {
-                value += _pieces[row][col]->GetCharacter();
+                value += PieceCharacterValue[_pieces[row][col]->GetCharacter()];
             }
             else if (_pieces[row][col]->GetColor() == (1 - _currentPlayer))
             {
-                value -= _pieces[row][col]->GetCharacter();
+                value -= PieceCharacterValue[_pieces[row][col]->GetCharacter()];
             }
         }
     }

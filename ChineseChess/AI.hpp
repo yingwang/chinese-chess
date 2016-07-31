@@ -25,7 +25,27 @@ private:
     int _numOfCol;
     std::vector< std::vector<Piece*> > _pieces;
     int _currentPlayer;
+    
 public:
+    int PieceCharacterValue[15] =
+    {
+        1000,//GENERAL_BLUE,
+        1000,//GENERAL_RED,
+        100,//ADVISOR_BLUE,
+        100,//ADVISOR_RED,
+        80,//ELEPHANT_BLUE,
+        80,//ELEPHANT_RED,
+        150,//HORSE_BLUE,
+        150,//HORSE_RED,
+        300,//CHARIOT_BLUE,
+        300,//CHARIOT_RED,
+        180,//CANNON_BLUE,
+        180,//CANNON_RED,
+        80,//SOLDIER_BLUE,
+        80,//SOLDIER_RED,
+        0,//NONE,
+    };
+
     AI(std::vector< std::vector<Piece*> >& pieces, int player);
     void SearchForBestMove();
     int EvaluateMove(Move move);
