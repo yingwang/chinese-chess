@@ -17,14 +17,14 @@ AI::AI(std::vector< std::vector<Piece*> >& pieces, int player)
     _numOfCol = Config::NUM_OF_COL;
     _pieces = pieces;
     _currentPlayer = player;
-    SearchForBestMove();
+    
+    SearchForBestMove(0);
 }
 
-void AI::SearchForBestMove()
+void AI::SearchForBestMove(int depth)
 {
     std::vector<int> possibleMoves;
-    _bestValue = INT_MIN;
-
+    int maxValue = INT_MIN;
     for (int row = 0; row < _numOfRow; row++)
     {
         for (int col = 0; col < _numOfCol; col++ )
@@ -41,10 +41,17 @@ void AI::SearchForBestMove()
                     move.SetToRow(possibleMoves[i] / 10);
                     move.SetToCol(possibleMoves[i] % 10);
                     move.SetToPiece(_pieces[move.GetToRow()][move.GetToCol()]);
-                    int v = EvaluateMove(move);
-                    if ( v > _bestValue)
+                    
+                    PerformMove(move);
+                    
+                    int value = SearchForBestMoveRecur(depth + 1); //EvaluateState(0);//only search current step
+                    
+                    RevertMove(move);
+                    
+                    if (value > maxValue)
                     {
-                        _bestValue = v;
+                        maxValue = value;
+                        std::cout << "** maxValue: " << maxValue << std::endl;
                         _bestMove.SetFromRow(row);
                         _bestMove.SetFromCol(col);
                         _bestMove.SetFromPiece(_pieces[_bestMove.GetFromRow()][_bestMove.GetFromCol()]);
@@ -56,28 +63,64 @@ void AI::SearchForBestMove()
             }
         }
     }
+    std::cout << "**** maxValue: " << maxValue << std::endl;
 }
 
-int AI::EvaluateMove(Move move)
+int AI::SearchForBestMoveRecur(int depth)
 {
-    PerformMove(move);
-    int value = EvaluateState();
-    RevertMove(move);
-    return value;
-}
-
-int AI::EvaluateState()
-{
-    int value = 0;
+    std::vector<int> possibleMoves;
+    int minValue = INT_MAX;
+    int player = (_currentPlayer + depth) % 2;
     for (int row = 0; row < _numOfRow; row++)
     {
         for (int col = 0; col < _numOfCol; col++ )
         {
-            if (_pieces[row][col]->GetColor() == _currentPlayer)
+            if (_pieces[row][col]->GetColor() == player)
+            {
+                Move move;
+                move.SetFromRow(row);
+                move.SetFromCol(col);
+                move.SetFromPiece(_pieces[move.GetFromRow()][move.GetFromCol()]);
+                possibleMoves = _pieces[row][col]->PossibleMovesAsVector(_pieces);
+                for (int i = 0; i < possibleMoves.size(); i++)
+                {
+                    move.SetToRow(possibleMoves[i] / 10);
+                    move.SetToCol(possibleMoves[i] % 10);
+                    move.SetToPiece(_pieces[move.GetToRow()][move.GetToCol()]);
+                    
+                    PerformMove(move);
+                    
+                    int value = EvaluateState(depth);
+                    
+                    if (value < minValue)
+                    {
+                        minValue = value;
+                        std::cout << "minValue: " << minValue << std::endl;
+                    }
+                    RevertMove(move);
+                    
+                }
+            }
+        }
+    }
+    std::cout << "** minValue: " << minValue << std::endl;
+    return minValue;
+}
+
+int AI::EvaluateState(int depth)
+{
+    int value = 0;
+    int player = _currentPlayer; //(_currentPlayer + depth) % 2;
+    
+    for (int row = 0; row < _numOfRow; row++)
+    {
+        for (int col = 0; col < _numOfCol; col++ )
+        {
+            if (_pieces[row][col]->GetColor() == player)
             {
                 value += PieceCharacterValue[_pieces[row][col]->GetCharacter()];
             }
-            else if (_pieces[row][col]->GetColor() == (1 - _currentPlayer))
+            else if (_pieces[row][col]->GetColor() == (1 - player))
             {
                 value -= PieceCharacterValue[_pieces[row][col]->GetCharacter()];
             }

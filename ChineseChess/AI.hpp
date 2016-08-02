@@ -10,6 +10,7 @@
 #define AI_hpp
 
 #include <iostream>
+#include <vector>
 #include "PieceFactory.hpp"
 #include "Piece.hpp"
 #include "Game.hpp"
@@ -19,8 +20,9 @@
 class AI
 {
 private:
+    static const int SEARCH_DEPTH = 3;
     Move _bestMove;
-    int _bestValue;
+    //std::vector<int> _bestValue;
     int _numOfRow;
     int _numOfCol;
     std::vector< std::vector<Piece*> > _pieces;
@@ -47,9 +49,10 @@ public:
     };
 
     AI(std::vector< std::vector<Piece*> >& pieces, int player);
-    void SearchForBestMove();
-    int EvaluateMove(Move move);
-    int EvaluateState();
+    void SearchForBestMove(int depth);
+    int SearchForBestMoveRecur(int depth);
+    int EvaluateMove(Move move, int depth);
+    int EvaluateState(int depth);
     void PerformMove(Move move);
     void RevertMove(Move move);
     Move BestMove();
