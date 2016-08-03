@@ -51,7 +51,7 @@ void AI::SearchForBestMove(int depth)
                     if (value > maxValue)
                     {
                         maxValue = value;
-                        std::cout << "** maxValue: " << maxValue << std::endl;
+                        ///std::cout << "** maxValue: " << maxValue << std::endl;
                         _bestMove.SetFromRow(row);
                         _bestMove.SetFromCol(col);
                         _bestMove.SetFromPiece(_pieces[_bestMove.GetFromRow()][_bestMove.GetFromCol()]);
@@ -70,6 +70,7 @@ int AI::SearchForBestMoveRecur(int depth)
 {
     std::vector<int> possibleMoves;
     int minValue = INT_MAX;
+    int maxValue = INT_MIN;
     int player = (_currentPlayer + depth) % 2;
     for (int row = 0; row < _numOfRow; row++)
     {
@@ -89,22 +90,47 @@ int AI::SearchForBestMoveRecur(int depth)
                     move.SetToPiece(_pieces[move.GetToRow()][move.GetToCol()]);
                     
                     PerformMove(move);
-                    
-                    int value = EvaluateState(depth);
-                    
-                    if (value < minValue)
+                    int value;
+                    if (depth < (SEARCH_DEPTH - 1))
                     {
-                        minValue = value;
-                        std::cout << "minValue: " << minValue << std::endl;
+                        value = SearchForBestMoveRecur(depth + 1);
+                    }
+                    else if (depth == (SEARCH_DEPTH - 1))
+                    {
+                        value = EvaluateState(depth);
+                    }
+                    
+                    if (depth % 2 == 0)
+                    {
+                        if (value > maxValue)
+                        {
+                            maxValue = value;
+                            //std::cout << "maxValue: " << maxValue << std::endl;
+                        }
+                    }
+                    else
+                    {
+                        if (value < minValue)
+                        {
+                            minValue = value;
+                            //std::cout << "minValue: " << minValue << std::endl;
+                        }
                     }
                     RevertMove(move);
-                    
                 }
             }
         }
     }
-    std::cout << "** minValue: " << minValue << std::endl;
-    return minValue;
+    if (depth % 2 == 0)
+    {
+        //std::cout << "** maxValue: " << maxValue << std::endl;
+        return maxValue;
+    }
+    else
+    {
+        //std::cout << "** minValue: " << minValue << std::endl;
+        return minValue;
+    }
 }
 
 int AI::EvaluateState(int depth)

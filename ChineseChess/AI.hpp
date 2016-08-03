@@ -20,7 +20,7 @@
 class AI
 {
 private:
-    static const int SEARCH_DEPTH = 3;
+    static const int SEARCH_DEPTH = 4;
     Move _bestMove;
     //std::vector<int> _bestValue;
     int _numOfRow;
