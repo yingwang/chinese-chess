@@ -155,24 +155,27 @@ int AI::EvaluateState(int depth)
     return value;
 }
 
-void AI::PerformMove(Move move)
+void AI::PerformMove(Move& move)
 {
-    _pieces[move.GetFromRow()][move.GetFromCol()] = PieceFactory::createPiece(Piece::NONE);
-    _pieces[move.GetFromRow()][move.GetFromCol()]->SetRow(move.GetFromRow());
-    _pieces[move.GetFromRow()][move.GetFromCol()]->SetCol(move.GetFromCol());
     _pieces[move.GetToRow()][move.GetToCol()]= move.GetFromPiece();
     _pieces[move.GetToRow()][move.GetToCol()]->SetRow(move.GetToRow());
     _pieces[move.GetToRow()][move.GetToCol()]->SetCol(move.GetToCol());
+    _pieces[move.GetFromRow()][move.GetFromCol()] = PieceFactory::createPiece(Piece::NONE);
+    _pieces[move.GetFromRow()][move.GetFromCol()]->SetRow(move.GetFromRow());
+    _pieces[move.GetFromRow()][move.GetFromCol()]->SetCol(move.GetFromCol());
 }
 
-void AI::RevertMove(Move move)
+void AI::RevertMove(Move& move)
 {
+    Piece* from = _pieces[move.GetFromRow()][move.GetFromCol()];
     _pieces[move.GetFromRow()][move.GetFromCol()] = move.GetFromPiece();
     _pieces[move.GetFromRow()][move.GetFromCol()]->SetRow(move.GetFromRow());
     _pieces[move.GetFromRow()][move.GetFromCol()]->SetCol(move.GetFromCol());
     _pieces[move.GetToRow()][move.GetToCol()]= move.GetToPiece();
     _pieces[move.GetToRow()][move.GetToCol()]->SetRow(move.GetToRow());
     _pieces[move.GetToRow()][move.GetToCol()]->SetCol(move.GetToCol());
+    delete from;
+    from = nullptr;
 }
 
 Move AI::BestMove()

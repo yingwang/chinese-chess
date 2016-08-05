@@ -51,10 +51,10 @@ public:
     AI(std::vector< std::vector<Piece*> >& pieces, int player);
     void SearchForBestMove(int depth);
     int SearchForBestMoveRecur(int depth);
-    int EvaluateMove(Move move, int depth);
+    int EvaluateMove(Move& move, int depth);
     int EvaluateState(int depth);
-    void PerformMove(Move move);
-    void RevertMove(Move move);
+    void PerformMove(Move& move);
+    void RevertMove(Move& move);
     Move BestMove();
 };
 
