@@ -56,6 +56,7 @@ public:
     void PerformMove(Move& move);
     void RevertMove(Move& move);
     Move BestMove();
+    int GetPositionValue(int color, int row, int col);
 };
 
 #endif /* AI_hpp */

@@ -94,5 +94,3 @@ bool Piece::CheckGenerals(int row, int col)
     }
     return false;
 }
-
-

@@ -133,6 +133,39 @@ int AI::SearchForBestMoveRecur(int depth)
     }
 }
 
+int AI::GetPositionValue(int color, int row, int col)
+{
+    int pos_value = 0;
+    // blue
+    if (color == 0)
+    {
+        if (row >= 7)
+        {
+            pos_value += 20;
+        }
+        if (row > 4)
+        {
+            pos_value += 10;
+        }
+    }
+    else // red
+    {
+        if (row <= 2)
+        {
+            pos_value += 20;
+        }
+        if (row < 5)
+        {
+            pos_value += 10;
+        }
+    }
+    if ((col > 2) && (col < 6))
+    {
+        pos_value += 10;
+    }
+    return pos_value;
+}
+
 int AI::EvaluateState(int depth)
 {
     int value = 0;
@@ -144,11 +177,11 @@ int AI::EvaluateState(int depth)
         {
             if (_pieces[row][col]->GetColor() == player)
             {
-                value += PieceCharacterValue[_pieces[row][col]->GetCharacter()];
+                value = value + PieceCharacterValue[_pieces[row][col]->GetCharacter()] + GetPositionValue(player, row, col);
             }
             else if (_pieces[row][col]->GetColor() == (1 - player))
             {
-                value -= PieceCharacterValue[_pieces[row][col]->GetCharacter()];
+                value = value - PieceCharacterValue[_pieces[row][col]->GetCharacter()] - GetPositionValue((1-player), row, col);
             }
         }
     }
