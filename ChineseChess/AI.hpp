@@ -50,9 +50,10 @@ public:
 
     AI(std::vector< std::vector<Piece*> >& pieces, int player);
     void SearchForBestMove(int depth);
-    int SearchForBestMoveRecur(int depth);
+    int SearchForBestMoveRecur(int stateValue, int depth);
     int EvaluateMove(Move& move, int depth);
-    int EvaluateState(int depth);
+    int EvaluateState();
+    int UpdateState(int currentStateValue, Move& move);
     void PerformMove(Move& move);
     void RevertMove(Move& move);
     Move BestMove();

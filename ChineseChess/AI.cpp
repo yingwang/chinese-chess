@@ -23,6 +23,7 @@ AI::AI(std::vector< std::vector<Piece*> >& pieces, int player)
 
 void AI::SearchForBestMove(int depth)
 {
+    int currentStateValue = EvaluateState();
     std::vector<int> possibleMoves;
     int maxValue = INT_MIN;
     for (int row = 0; row < _numOfRow; row++)
@@ -41,13 +42,10 @@ void AI::SearchForBestMove(int depth)
                     move.SetToRow(possibleMoves[i] / 10);
                     move.SetToCol(possibleMoves[i] % 10);
                     move.SetToPiece(_pieces[move.GetToRow()][move.GetToCol()]);
-                    
+                    int newStateValue = UpdateState(currentStateValue, move);
                     PerformMove(move);
-                    
-                    int value = SearchForBestMoveRecur(depth + 1); //EvaluateState(0);//only search current step
-                    
+                    int value = SearchForBestMoveRecur(newStateValue, depth + 1); //EvaluateState(0);//only search current step
                     RevertMove(move);
-                    
                     if (value > maxValue)
                     {
                         maxValue = value;
@@ -66,7 +64,7 @@ void AI::SearchForBestMove(int depth)
     std::cout << "**** maxValue: " << maxValue << std::endl;
 }
 
-int AI::SearchForBestMoveRecur(int depth)
+int AI::SearchForBestMoveRecur(int stateValue, int depth)
 {
     std::vector<int> possibleMoves;
     int minValue = INT_MAX;
@@ -89,15 +87,17 @@ int AI::SearchForBestMoveRecur(int depth)
                     move.SetToCol(possibleMoves[i] % 10);
                     move.SetToPiece(_pieces[move.GetToRow()][move.GetToCol()]);
                     
+                    int newStateValue = UpdateState(stateValue, move);
                     PerformMove(move);
+                    
                     int value;
                     if (depth < (SEARCH_DEPTH - 1))
                     {
-                        value = SearchForBestMoveRecur(depth + 1);
+                        value = SearchForBestMoveRecur(newStateValue, depth + 1);
                     }
                     else if (depth == (SEARCH_DEPTH - 1))
                     {
-                        value = EvaluateState(depth);
+                        value = newStateValue;
                     }
                     
                     if (depth % 2 == 0)
@@ -166,11 +166,11 @@ int AI::GetPositionValue(int color, int row, int col)
     return pos_value;
 }
 
-int AI::EvaluateState(int depth)
+int AI::EvaluateState()
 {
     int value = 0;
     int player = _currentPlayer; //(_currentPlayer + depth) % 2;
-    
+
     for (int row = 0; row < _numOfRow; row++)
     {
         for (int col = 0; col < _numOfCol; col++ )
@@ -186,6 +186,31 @@ int AI::EvaluateState(int depth)
         }
     }
     return value;
+}
+
+int AI::UpdateState(int currentStateValue, Move& move)
+{
+    int player = _currentPlayer; //(_currentPlayer + depth) % 2;
+
+    // A -> B: A is AI
+    if (move.GetFromPiece()->GetColor() == player)
+    {
+        currentStateValue = currentStateValue - GetPositionValue(player, move.GetFromRow(), move.GetFromCol()) + GetPositionValue(player, move.GetToRow(), move.GetToCol());
+        if (move.GetToPiece()->GetColor() == (1 - player))
+        {
+            currentStateValue = currentStateValue + PieceCharacterValue[move.GetToPiece()->GetCharacter()] + GetPositionValue((1 - player), move.GetToRow(), move.GetToCol());
+        }
+    }
+    else if (move.GetFromPiece()->GetColor() == (1 - player))     // A -> B: B is AI
+    {
+        currentStateValue = currentStateValue + GetPositionValue((1 - player), move.GetFromRow(), move.GetFromCol()) - GetPositionValue((1 - player), move.GetToRow(), move.GetToCol());
+        if (move.GetToPiece()->GetColor() == player)
+        {
+            currentStateValue = currentStateValue - PieceCharacterValue[move.GetToPiece()->GetCharacter()] - GetPositionValue(player, move.GetToRow(), move.GetToCol());
+        }
+    }
+
+    return currentStateValue;
 }
 
 void AI::PerformMove(Move& move)
