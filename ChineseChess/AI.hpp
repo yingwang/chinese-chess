@@ -33,8 +33,8 @@ public:
     {
         1000,//GENERAL_BLUE,
         1000,//GENERAL_RED,
-        100,//ADVISOR_BLUE,
-        100,//ADVISOR_RED,
+        90,//ADVISOR_BLUE,
+        90,//ADVISOR_RED,
         80,//ELEPHANT_BLUE,
         80,//ELEPHANT_RED,
         150,//HORSE_BLUE,

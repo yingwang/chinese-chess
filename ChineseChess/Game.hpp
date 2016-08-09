@@ -51,6 +51,7 @@ private:
     void OnMouseButtonDown(int xPos, int yPos);
     void OnMouseButtonUp(int xPos, int yPos);
     void PerformMove(Move& move);
+    void TriggerAIEvent();
 
 public:
     enum GameState {

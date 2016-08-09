@@ -188,6 +188,7 @@ void Game::OnMouseButtonDown(int xPos, int yPos)
 
 void Game::OnMouseButtonUp(int xPos, int yPos)
 {
+    GameState state = currentGameState;
     currentMove.SetToLocation(xPos, yPos);
     
     if (currentMove.GetValidMove())
@@ -227,6 +228,7 @@ void Game::OnMouseButtonUp(int xPos, int yPos)
         }
         currentMove.ResetMove();
         currentMove.ResetValidMove();
+        if (state != currentGameState) TriggerAIEvent();
     }
 }
 
@@ -301,6 +303,17 @@ void Game::AIPlay()
 
     currentMove.ResetMove();
     currentMove.ResetValidMove();
+}
+
+void Game::TriggerAIEvent()
+{
+    Uint32 gameStateChanged = SDL_RegisterEvents(1);
+    if (gameStateChanged != ((Uint32)-1)) {
+        SDL_Event event;
+        SDL_memset(&event, 0, sizeof(event));
+        event.type = gameStateChanged;
+        SDL_PushEvent(&event);
+    }
 }
 
 void Game::Update()
